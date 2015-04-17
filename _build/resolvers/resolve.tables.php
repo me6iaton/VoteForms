@@ -11,6 +11,10 @@ if ($object->xpdo) {
 
       $manager = $modx->getManager();
       $objects = array(
+        'VoteForm',
+        'VoteFormField',
+        'VoteFormThread',
+        'VoteFormRecord',
         'VoteFormsItem',
       );
       foreach ($objects as $tmp) {

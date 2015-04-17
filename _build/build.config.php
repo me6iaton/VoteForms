@@ -4,7 +4,7 @@
 define('PKG_NAME', 'VoteForms');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 
-define('PKG_VERSION', '0.0.1');
+define('PKG_VERSION', '0.0.2');
 define('PKG_RELEASE', 'beta');
 define('PKG_AUTO_INSTALL', true);
 
@@ -63,5 +63,5 @@ if (!empty($_GET['development'])) {
 $BUILD_RESOLVERS = array(
   'tables',
   'chunks',
-  //'setup',
+  'setup',
 );

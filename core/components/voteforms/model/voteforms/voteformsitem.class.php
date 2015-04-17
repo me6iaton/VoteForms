@@ -1,7 +1,2 @@
 <?php
-
-/**
- * @package voteforms
- */
-class VoteFormsItem extends xPDOSimpleObject {
-}
+class VoteFormsItem extends xPDOSimpleObject {}
