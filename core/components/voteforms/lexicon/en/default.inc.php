@@ -22,13 +22,6 @@ $_lang['voteforms_items_remove'] = 'Remove Items';
 $_lang['voteforms_item_remove_confirm'] = 'Are you sure you want to remove this Item?';
 $_lang['voteforms_items_remove_confirm'] = 'Are you sure you want to remove this Items?';
 
-$_lang['voteforms_err_name'] = 'Вы должны указать имя.';
-$_lang['voteforms_err_ae'] = 'Запись с таким именем уже существует.';
-$_lang['voteforms_err_nf'] = 'Запись не найдена.';
-$_lang['voteforms_err_ns'] = 'Запись не указана.';
-$_lang['voteforms_err_remove'] = 'Ошибка при удалении.';
-$_lang['voteforms_err_save'] = 'Ошибка при сохранении.';
-
 $_lang['voteforms_item_err_name'] = 'You must specify the name of Item.';
 $_lang['voteforms_item_err_ae'] = 'An Item already exists with that name.';
 $_lang['voteforms_item_err_nf'] = 'Item not found.';

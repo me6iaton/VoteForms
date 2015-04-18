@@ -4,6 +4,8 @@
 
     <object class="VoteForm" table="voteforms" extends="xPDOSimpleObject">
         <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="text" null="true" default=""/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
         <composite alias="Fields" class="VoteFormField" local="id" foreign="form" cardinality="many" owner="local"/>
         <composite alias="Threads" class="VoteFormThread" local="id" foreign="form" cardinality="many" owner="local"/>
@@ -51,5 +53,5 @@
             <column key="active" length="" collation="A" null="false"/>
         </index>
     </object>
-    
+
 </model>
