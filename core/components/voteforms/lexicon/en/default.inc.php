@@ -23,6 +23,8 @@ $_lang['voteforms_item_remove_confirm'] = 'Are you sure you want to remove this 
 $_lang['voteforms_items_remove_confirm'] = 'Are you sure you want to remove this Items?';
 
 $_lang['voteforms_item_err_name'] = 'You must specify the name of Item.';
+$_lang['voteforms_item_err_form'] = 'You must specify the form id.';
+$_lang['voteforms_item_err_type'] = 'You must specify the field type .';
 $_lang['voteforms_item_err_ae'] = 'An Item already exists with that name.';
 $_lang['voteforms_item_err_nf'] = 'Item not found.';
 $_lang['voteforms_item_err_ns'] = 'Item not specified.';

@@ -24,6 +24,8 @@ $_lang['voteforms_items_remove_confirm'] = 'Вы уверены, что хоти
 $_lang['voteforms_item_active'] = 'Включено';
 
 $_lang['voteforms_item_err_name'] = 'Вы должны указать имя элемента.';
+$_lang['voteforms_item_err_form'] = 'Вы должны указать id формы.';
+$_lang['voteforms_item_err_type'] = 'Вы должны указать тип поля.';
 $_lang['voteforms_item_err_ae'] = 'Элемент с таким именем уже существует.';
 $_lang['voteforms_item_err_nf'] = 'Элемент не найден.';
 $_lang['voteforms_item_err_ns'] = 'Элемент не указан.';
