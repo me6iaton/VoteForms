@@ -7,6 +7,8 @@ $xpdo_meta_map['VoteForm']= array (
   'fields' => 
   array (
     'name' => '',
+    'description' => '',
+    'active' => 1,
   ),
   'fieldMeta' => 
   array (
@@ -17,6 +19,21 @@ $xpdo_meta_map['VoteForm']= array (
       'phptype' => 'string',
       'null' => false,
       'default' => '',
+    ),
+    'description' => 
+    array (
+      'dbtype' => 'text',
+      'phptype' => 'text',
+      'null' => true,
+      'default' => '',
+    ),
+    'active' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 1,
     ),
   ),
   'composites' => 

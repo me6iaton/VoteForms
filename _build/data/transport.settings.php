@@ -2,13 +2,17 @@
 
 $settings = array();
 
-$tmp = array(/*
-  'some_setting' => array(
-    'xtype' => 'combo-boolean',
-    'value' => true,
-    'area' => 'voteforms_main',
+$tmp = array(
+  'core_path' => array(
+    'xtype' => 'textfield',
+    'value' => PKG_CORE_PATH,
+    'area' => 'voteforms.main',
   ),
-  */
+  'assets_url' => array(
+    'xtype' => 'textfield',
+    'value' => PKG_ASSETS_URL,
+    'area' => 'voteforms.main',
+  ),
 );
 
 foreach ($tmp as $k => $v) {

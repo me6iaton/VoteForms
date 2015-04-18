@@ -26,6 +26,9 @@ VoteForms.panel.Home = function (config) {
                     html: _('voteforms_intro_msg'),
                     cls: 'panel-desc',
                 }, {
+                    xtype: 'voteforms-grid-forms',
+                    cls: 'main-wrapper',
+                }, {
                     xtype: 'voteforms-grid-items',
                     cls: 'main-wrapper',
                 }]
