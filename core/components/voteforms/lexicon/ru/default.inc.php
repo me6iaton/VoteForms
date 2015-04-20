@@ -10,9 +10,12 @@ $_lang['voteforms_item_id'] = 'Id';
 $_lang['voteforms_item_name'] = 'Название';
 $_lang['voteforms_item_description'] = 'Описание';
 $_lang['voteforms_item_active'] = 'Активно';
+$_lang['voteforms_item_index'] = 'Порядок';
+$_lang['voteforms_item_type'] = 'Тип';
 
 $_lang['voteforms_item_create'] = 'Создать элемент';
 $_lang['voteforms_item_update'] = 'Изменить элемент';
+$_lang['voteforms_item_update_fields'] = 'Изменить поля';
 $_lang['voteforms_item_enable'] = 'Включить элемент';
 $_lang['voteforms_items_enable'] = 'Включить элементы';
 $_lang['voteforms_item_disable'] = 'Отключить элемент';

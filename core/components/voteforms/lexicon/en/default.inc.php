@@ -10,9 +10,12 @@ $_lang['voteforms_item_id'] = 'Id';
 $_lang['voteforms_item_name'] = 'Name';
 $_lang['voteforms_item_description'] = 'Description';
 $_lang['voteforms_item_active'] = 'Active';
+$_lang['voteforms_item_index'] = 'Index';
+$_lang['voteforms_item_type'] = 'Type';
 
 $_lang['voteforms_item_create'] = 'Create Item';
 $_lang['voteforms_item_update'] = 'Update Item';
+$_lang['voteforms_item_update_fields'] = 'Update fields';
 $_lang['voteforms_item_enable'] = 'Enable Item';
 $_lang['voteforms_items_enable'] = 'Enable Items';
 $_lang['voteforms_item_disable'] = 'Disable Item';

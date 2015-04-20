@@ -6,12 +6,23 @@ $xpdo_meta_map['VoteFormField']= array (
   'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
+    'index' => 0,
     'form' => 0,
     'name' => '',
+    'description' => '',
     'type' => 'integer',
   ),
   'fieldMeta' => 
   array (
+    'index' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'attributes' => 'unsigned',
+      'phptype' => 'integer',
+      'null' => false,
+      'default' => 0,
+    ),
     'form' => 
     array (
       'dbtype' => 'int',
@@ -27,6 +38,13 @@ $xpdo_meta_map['VoteFormField']= array (
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
+      'default' => '',
+    ),
+    'description' => 
+    array (
+      'dbtype' => 'text',
+      'phptype' => 'text',
+      'null' => true,
       'default' => '',
     ),
     'type' => 

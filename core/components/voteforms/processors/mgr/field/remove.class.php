@@ -4,8 +4,8 @@
  * Remove an Field
  */
 class VoteFormFieldRemoveProcessor extends modObjectProcessor {
-  public $objectType = 'VoteForm';
-  public $classKey = 'VoteForm';
+  public $objectType = 'VoteFormField';
+  public $classKey = 'VoteFormField';
   public $languageTopics = array('voteforms');
   //public $permission = 'remove';
 

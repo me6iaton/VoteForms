@@ -16,6 +16,7 @@ VoteForms.panel.Home = function (config) {
             style: {margin: '15px 0'}
         }, {
             xtype: 'modx-tabs',
+            id: 'voteforms-panel-home-tabs',
             defaults: {border: false, autoHeight: true},
             border: true,
             hideMode: 'offsets',

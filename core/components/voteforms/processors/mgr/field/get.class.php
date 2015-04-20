@@ -4,8 +4,8 @@
  * Get an Field
  */
 class VoteFormFieldGetProcessor extends modObjectGetProcessor {
-  public $objectType = 'VoteForm';
-  public $classKey = 'VoteForm';
+  public $objectType = 'VoteFormField';
+  public $classKey = 'VoteFormField';
   public $languageTopics = array('voteforms:default');
   //public $permission = 'view';
 

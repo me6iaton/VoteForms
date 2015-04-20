@@ -16,6 +16,7 @@
         <field key="index" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="text" null="true" default=""/>
         <field key="type" dbtype="varchar" precision="100" phptype="string" null="false" default="integer"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="field" cardinality="many" owner="local"/>

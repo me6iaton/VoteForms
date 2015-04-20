@@ -1,8 +1,9 @@
-VoteForms.grid.Forms = function (config) {
+VoteForms.grid.Fields = function (config) {
     config = config || {};
     if (!config.id) {
-        config.id = 'voteforms-grid-forms';
+        config.id = 'voteforms-grid-fields-form' + config.form;
     }
+    this.form = config.form;
     Ext.applyIf(config, {
         url: VoteForms.config.connector_url,
         fields: this.getFields(config),
@@ -10,7 +11,8 @@ VoteForms.grid.Forms = function (config) {
         tbar: this.getTopBar(config),
         sm: new Ext.grid.CheckboxSelectionModel(),
         baseParams: {
-            action: 'mgr/form/getlist'
+            action: 'mgr/field/getlist',
+            form: this.form
         },
         listeners: {
             rowDblClick: function (grid, rowIndex, e) {
@@ -30,11 +32,11 @@ VoteForms.grid.Forms = function (config) {
                     : '';
             }
         },
-        paging: true,
+        paging: false,
         remoteSort: true,
         autoHeight: true,
     });
-    VoteForms.grid.Forms.superclass.constructor.call(this, config);
+    VoteForms.grid.Fields.superclass.constructor.call(this, config);
 
     // Clear selection on grid refresh
     this.store.on('load', function () {
@@ -43,7 +45,7 @@ VoteForms.grid.Forms = function (config) {
         }
     }, this);
 };
-Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
+Ext.extend(VoteForms.grid.Fields, MODx.grid.Grid, {
     windows: {},
 
     getMenu: function (grid, rowIndex) {
@@ -57,8 +59,9 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
 
     createItem: function (btn, e) {
         var w = MODx.load({
-            xtype: 'voteforms-form-window-create',
+            xtype: 'voteforms-field-window-create',
             id: Ext.id(),
+            form: this.form,
             listeners: {
                 success: {
                     fn: function () {
@@ -84,14 +87,14 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/form/get',
+                action: 'mgr/field/get',
                 id: id
             },
             listeners: {
                 success: {
                     fn: function (r) {
                         var w = MODx.load({
-                            xtype: 'voteforms-form-window-update',
+                            xtype: 'voteforms-field-window-update',
                             id: Ext.id(),
                             record: r,
                             listeners: {
@@ -125,7 +128,7 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
                 : _('voteforms_item_remove_confirm'),
             url: this.config.url,
             params: {
-                action: 'mgr/form/remove',
+                action: 'mgr/field/remove',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -147,7 +150,7 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/form/disable',
+                action: 'mgr/field/disable',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -168,7 +171,7 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/form/enable',
+                action: 'mgr/field/enable',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -182,13 +185,13 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
     },
 
     getFields: function (config) {
-        return ['id', 'name', 'description', 'active', 'actions'];
+        return ['id','index', 'name', 'description', 'type', 'actions'];
     },
 
     getColumns: function (config) {
         return [{
-            header: _('voteforms_item_id'),
-            dataIndex: 'id',
+            header: _('voteforms_item_index'),
+            dataIndex: 'index',
             sortable: true,
             width: 70
         }, {
@@ -202,17 +205,16 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
             sortable: false,
             width: 250,
         }, {
-            header: _('voteforms_item_active'),
-            dataIndex: 'active',
-            renderer: VoteForms.utils.renderBoolean,
-            sortable: true,
+            header: _('voteforms_item_type'),
+            dataIndex: 'type',
+            sortable: false,
             width: 100,
         }, {
             header: _('voteforms_grid_actions'),
             dataIndex: 'actions',
             renderer: VoteForms.utils.renderActions,
             sortable: false,
-            width: 110,
+            width: 70,
             id: 'actions'
         }];
     },
@@ -222,28 +224,6 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
             text: '<i class="icon icon-plus">&nbsp;' + _('voteforms_item_create'),
             handler: this.createItem,
             scope: this
-        }, '->', {
-            xtype: 'textfield',
-            name: 'query',
-            width: 200,
-            id: config.id + '-search-field',
-            emptyText: _('voteforms_grid_search'),
-            listeners: {
-                render: {
-                    fn: function (tf) {
-                        tf.getEl().addKeyListener(Ext.EventObject.ENTER, function () {
-                            this._doSearch(tf);
-                        }, this);
-                    }, scope: this
-                }
-            }
-        }, {
-            xtype: 'button',
-            id: config.id + '-search-clear',
-            text: '<i class="icon icon-times"></i>',
-            listeners: {
-                click: {fn: this._clearSearch, scope: this}
-            }
         }];
     },
 
@@ -266,24 +246,6 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
         return this.processEvent('click', e);
     },
 
-    updateItemFields: function (act, btn, e) {
-        Ext.each(this.getSelectionModel().getSelections(), function(item){
-            item = item.data;
-            if (Ext.get('voteforms-grid-fields-form' + item.id) == null) {
-                Ext.getCmp('voteforms-panel-home-tabs').add({
-                    title: item.name,
-                    closable: true,
-                    items: [{
-                        xtype: 'voteforms-grid-fields',
-                        cls: 'main-wrapper',
-                        form: item.id,
-                    }],
-                    listeners: {}
-                }).show();
-            }
-        });
-    },
-
     _getSelectedIds: function () {
         var ids = [];
         var selected = this.getSelectionModel().getSelections();
@@ -298,17 +260,5 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
         return ids;
     },
 
-    _doSearch: function (tf, nv, ov) {
-        this.getStore().baseParams.query = tf.getValue();
-        this.getBottomToolbar().changePage(1);
-        this.refresh();
-    },
-
-    _clearSearch: function (btn, e) {
-        this.getStore().baseParams.query = '';
-        Ext.getCmp(this.config.id + '-search-field').setValue('');
-        this.getBottomToolbar().changePage(1);
-        this.refresh();
-    }
 });
-Ext.reg('voteforms-grid-forms', VoteForms.grid.Forms);
+Ext.reg('voteforms-grid-fields', VoteForms.grid.Fields);

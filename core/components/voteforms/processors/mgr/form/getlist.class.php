@@ -53,6 +53,16 @@ class VoteFormGetListProcessor extends modObjectGetListProcessor {
     $array = $object->toArray();
     $array['actions'] = array();
 
+    // Edit Fields
+    $array['actions'][] = array(
+      'cls' => '',
+      'icon' => 'icon icon-external-link action-blue',
+      'title' => $this->modx->lexicon('voteforms_item_update_fields'),
+      'multiple' => $this->modx->lexicon('voteforms_items_update_fields'),
+      'action' => 'updateItemFields',
+      'button' => true,
+      'menu' => true,
+    );
     // Edit
     $array['actions'][] = array(
       'cls' => '',
@@ -97,7 +107,6 @@ class VoteFormGetListProcessor extends modObjectGetListProcessor {
       'button' => true,
       'menu' => true,
     );
-
     return $array;
   }
 
