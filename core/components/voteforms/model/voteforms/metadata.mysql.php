@@ -7,6 +7,5 @@ $xpdo_meta_map = array (
     1 => 'VoteFormField',
     2 => 'VoteFormThread',
     3 => 'VoteFormRecord',
-    4 => 'VoteFormsItem',
   ),
 );

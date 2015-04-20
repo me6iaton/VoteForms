@@ -29,9 +29,6 @@ VoteForms.panel.Home = function (config) {
                 }, {
                     xtype: 'voteforms-grid-forms',
                     cls: 'main-wrapper',
-                }, {
-                    xtype: 'voteforms-grid-items',
-                    cls: 'main-wrapper',
                 }]
             }]
         }]

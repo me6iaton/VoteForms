@@ -15,7 +15,6 @@ if ($object->xpdo) {
         'VoteFormField',
         'VoteFormThread',
         'VoteFormRecord',
-        'VoteFormsItem',
       );
       foreach ($objects as $tmp) {
         $manager->createObjectContainer($tmp);
