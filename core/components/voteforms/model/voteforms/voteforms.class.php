@@ -10,6 +10,7 @@ class VoteForms
   /* @var pdoTools $pdoTools */
   public $pdoTools;
   public $initialized = array();
+  public $authenticated = false;
 
 
   /**
@@ -42,6 +43,8 @@ class VoteForms
 
     $this->modx->addPackage('voteforms', $this->config['modelPath']);
     $this->modx->lexicon->load('voteforms:default');
+
+    $this->authenticated = $this->modx->user->isAuthenticated($this->modx->context->get('key'));
   }
 
   /**

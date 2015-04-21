@@ -38,3 +38,4 @@ $_lang['voteforms_grid_search'] = 'Search';
 $_lang['voteforms_grid_actions'] = 'Actions';
 
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
+$_lang['voteforms_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';

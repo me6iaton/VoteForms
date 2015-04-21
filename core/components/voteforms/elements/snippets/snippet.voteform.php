@@ -14,6 +14,9 @@ if ($pdoClass = $modx->loadClass($fqn, '', false, true)) {
 if (!$VoteForms = $modx->getService('voteforms', 'VoteForms', $modx->getOption('voteforms_core_path', null, $modx->getOption('core_path') . 'components/voteforms/') . 'model/voteforms/', $scriptProperties)) {
   return 'Could not load VoteForms class!';
 }
+if (!$VoteForms->authenticated) {
+  return $modx->lexicon('voteforms_err_no_auth');
+}
 $VoteForms->initialize($modx->context->key, $scriptProperties);
 
 // Properties
