@@ -13,6 +13,16 @@ $tmp = array(
     'value' => PKG_ASSETS_URL,
     'area' => 'voteforms.main',
   ),
+  'frontend_css' => array(
+    'value' => '[[+cssUrl]]web/voteforms.css',
+    'xtype' => 'textfield',
+    'area' => 'tickets.main',
+  ),
+  'frontend_js' => array(
+    'value' => '[[+jsUrl]]web/voteforms.js',
+    'xtype' => 'textfield',
+    'area' => 'tickets.main',
+  ),
 );
 
 foreach ($tmp as $k => $v) {

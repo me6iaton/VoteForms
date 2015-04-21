@@ -3,8 +3,8 @@
 $snippets = array();
 
 $tmp = array(
-  'VoteForms' => array(
-    'file' => 'voteforms',
+  'VoteForm' => array(
+    'file' => 'voteform',
     'description' => '',
   ),
 );

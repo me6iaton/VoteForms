@@ -3,8 +3,12 @@
 $chunks = array();
 
 $tmp = array(
-  'tpl.VoteForms.item' => array(
-    'file' => 'item',
+  'tpl.VoteForms.outer' => array(
+    'file' => 'outer',
+    'description' => '',
+  ),
+  'tpl.VoteForms.row' => array(
+    'file' => 'row',
     'description' => '',
   ),
 );
