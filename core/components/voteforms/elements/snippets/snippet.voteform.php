@@ -16,10 +16,15 @@ if (!$VoteForms = $modx->getService('voteforms', 'VoteForms', $modx->getOption('
 }
 $VoteForms->initialize($modx->context->key, $scriptProperties);
 
+// Properties
 if (empty($thread)) {
   $scriptProperties['thread'] = $modx->getOption('thread', $scriptProperties, 'resource-' . $modx->resource->id, true);
 }
-$formId = $modx->getOption('id', $scriptProperties);
+if(empty($id)){
+  return $modx->lexicon('voteforms_form_err_id');
+}else{
+  $formId = $modx->getOption('id', $scriptProperties);
+}
 $tplOuter = $modx->getOption('tplOuter', $scriptProperties);
 $tplRow = $modx->getOption('tplRow', $scriptProperties);
 $sortby = $modx->getOption('sortby', $scriptProperties, 'index');
@@ -28,25 +33,43 @@ $sortdir = $modx->getOption('sortbir', $scriptProperties, 'ASC');
 //$outputSeparator = $modx->getOption('outputSeparator', $scriptProperties, "\n");
 //$toPlaceholder = $modx->getOption('toPlaceholder', $scriptProperties, false);
 
+// Prepare Voteforms Thread
+/** @var TicketThread $thread */
+if (!$thread = $modx->getObject('TicketThread', array('name' => $scriptProperties['thread']))) {
+  $thread = $modx->newObject('TicketThread');
+  $thread->fromArray(array(
+    'form' => $formId,
+    'name' => $scriptProperties['thread'],
+  ));
+  $thread->save();
+}
+$threadId = $thread->get('id');
+
+// get fields
 $default = array(
-  'class' => 'VoteForm',
+  'class' => 'VoteFormField',
   'where' => array(
-    'VoteForm.id' => $formId
+    'form' => $formId,
+    'Form.active' => 1
   ),
   'leftJoin' => array(
-    'Field' => array(
-      'class' => 'VoteFormField',
-      'on' => 'VoteForm.id = Field.form'
-    )
+    'Form' => array(
+      'class' => 'VoteForm',
+      'on' => 'VoteFormField.form = Form.id'
+    ),
+    'Record' => array(
+      'class' => 'VoteFormRecord',
+      'on' => "VoteFormField.id = Record.field" .
+        " AND Form.id = Record.form" .
+        " AND Record.createdby = {$modx->user->id}"
+    ),
   ),
   'select' => array(
-    'VoteForm' => '*',
-    'Field' => 'Field.name as fileds',
+    'VoteFormField' => '*',
+    'Record' => 'Record.integer as record',
   ),
   'return' => 'data',
 );
-
-// Merge all properties and run!
 $pdoFetch->setConfig($default);
 $rows = $pdoFetch->run();
 
@@ -57,18 +80,6 @@ if (!empty($rows) && is_array($rows)) {
     $output[] = $pdoFetch->getChunk($tplRow, $row, $pdoFetch->config['fastMode']);
   }
 }
-// Build query
-//$c = $modx->newQuery('VoteFormsItem');
-//$c->sortby($sortby, $sortdir);
-//$c->limit($limit);
-//$items = $modx->getIterator('VoteFormsItem', $c);
-
-// Iterate through items
-//$list = array();
-///** @var VoteFormsItem $item */
-//foreach ($items as $item) {
-//  $list[] = $modx->getChunk($tpl, $item->toArray());
-//}
 
 // Output
 if (empty($outputSeparator)) {

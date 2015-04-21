@@ -36,3 +36,5 @@ $_lang['voteforms_item_err_save'] = 'An error occurred while trying to save the 
 
 $_lang['voteforms_grid_search'] = 'Search';
 $_lang['voteforms_grid_actions'] = 'Actions';
+
+$_lang['voteforms_form_err_id'] = 'You must specify the form id.';
