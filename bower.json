@@ -1,0 +1,22 @@
+{
+  "name": "VoteForms",
+  "version": "1.0.1",
+  "authors": [
+    "me6iaton <me6iaton@gmail.com>"
+  ],
+  "keywords": [
+    "modx"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "raty": "~2.7.0",
+    "jquery": "~2.1.3"
+  }
+}
