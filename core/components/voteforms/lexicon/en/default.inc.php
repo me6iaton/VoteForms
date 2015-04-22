@@ -37,5 +37,6 @@ $_lang['voteforms_item_err_save'] = 'An error occurred while trying to save the 
 $_lang['voteforms_grid_search'] = 'Search';
 $_lang['voteforms_grid_actions'] = 'Actions';
 
+$_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
-$_lang['voteforms_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
+$_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';

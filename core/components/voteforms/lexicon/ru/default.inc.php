@@ -38,5 +38,6 @@ $_lang['voteforms_item_err_save'] = 'Ошибка при сохранении э
 $_lang['voteforms_grid_search'] = 'Поиск';
 $_lang['voteforms_grid_actions'] = 'Действия';
 
+$_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
-$_lang['voteforms_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
+$_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';

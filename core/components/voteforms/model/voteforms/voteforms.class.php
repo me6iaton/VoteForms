@@ -66,9 +66,10 @@ class VoteForms
     if (empty($this->initialized[$ctx])) {
       $config_js = array(
         'ctx' => $ctx,
+        'actionUrl' => $this->config['actionUrl'],
+        'vendorUrl' => $this->config['assetsUrl']. 'vendor/',
         'jsUrl' => $this->config['jsUrl'] . 'web/',
         'cssUrl' => $this->config['cssUrl'] . 'web/',
-        'actionUrl' => $this->config['actionUrl'],
       );
       $this->modx->regClientStartupScript(
         '<script type="text/javascript">' .
@@ -86,7 +87,7 @@ class VoteForms
       }
       $js = !empty($this->config['frontend_js'])
         ? $this->config['frontend_js']
-        : $this->modx->getOption('voteforms_frontend_css');
+        : $this->modx->getOption('voteforms_frontend_js');
       if (!empty($js) && preg_match('/\.js/i', $js)) {
         $this->modx->regClientScript(str_replace($config['pl'], $config['vl'], $js));
       }

@@ -15,7 +15,7 @@ if (!$VoteForms = $modx->getService('voteforms', 'VoteForms', $modx->getOption('
   return 'Could not load VoteForms class!';
 }
 if (!$VoteForms->authenticated) {
-  return $modx->lexicon('voteforms_err_no_auth');
+  return $modx->lexicon('voteforms_form_err_no_auth');
 }
 $VoteForms->initialize($modx->context->key, $scriptProperties);
 
@@ -89,6 +89,6 @@ if (empty($outputSeparator)) {
   $outputSeparator = "\n";
 }
 $output = implode($outputSeparator, $output);;
-
+$output = $pdoFetch->getChunk($tplOuter, array('output'=> $output), $pdoFetch->config['fastMode']);
 // By default just return output
 return $output;
