@@ -23,6 +23,7 @@ class VoteForms
 
     $corePath = $this->modx->getOption('voteforms_core_path', $config, $this->modx->getOption('core_path') . 'components/voteforms/');
     $assetsUrl = $this->modx->getOption('voteforms_assets_url', $config, $this->modx->getOption('assets_url') . 'components/voteforms/');
+    $actionUrl = $this->modx->getOption('voteforms_action_url', $config, $assetsUrl . 'action.php');
     $connectorUrl = $assetsUrl . 'connector.php';
 
     $this->config = array_merge(array(
@@ -30,7 +31,9 @@ class VoteForms
       'cssUrl' => $assetsUrl . 'css/',
       'jsUrl' => $assetsUrl . 'js/',
       'imagesUrl' => $assetsUrl . 'images/',
+
       'connectorUrl' => $connectorUrl,
+      'actionUrl' => $actionUrl,
 
       'corePath' => $corePath,
       'modelPath' => $corePath . 'model/',
@@ -131,5 +134,69 @@ class VoteForms
     }
 
     return $this->pdoTools->makePlaceholders($array, $prefix);
+  }
+
+  /**
+   * Shorthand for the call of processor
+   *
+   * @access public
+   *
+   * @param string $action Path to processor
+   * @param array $data Data to be transmitted to the processor
+   *
+   * @return mixed The result of the processor
+   */
+  public function runProcessor($action = '', $data = array())
+  {
+    if (empty($action)) {
+      return false;
+    }
+    if ($this->modx->context->get('key') !== 'mgr') {
+      $action = 'web/' . $action;
+    }
+    /* @var modProcessorResponse $response */
+    $response = $this->modx->runProcessor($action, $data, array('processors_path' => $this->config['processorsPath']));
+    return $this->prepareResponse($response);
+  }
+
+  /**
+   * This method returns prepared response
+   *
+   * @param mixed $response
+   *
+   * @return array|string $response
+   */
+  public function prepareResponse($response) {
+    if ($response instanceof modProcessorResponse) {
+      $output = $response->getResponse();
+      $output['message'] = $this->lexicon($output['message']);
+      if ($response->isError()) {
+        header('HTTP/1.1 400 Bad Request');
+      }
+    } else {
+      header('HTTP/1.1 400 Bad Request');
+      $output = array(
+        'success' => false,
+        'message' => $response
+          ? $this->lexicon($response)
+          : $this->lexicon('voteforms_err_unknown')
+      );
+    }
+    return $output;
+  }
+
+  /**
+   * return lexicon message if possibly
+   *
+   * @param string $message
+   * @return string $message
+   */
+  private function lexicon ($message){
+    if ($messageLexicon = $this->modx->lexicon($message)) {
+      return $messageLexicon;
+    }else{
+      return $message;
+    }
+
   }
 }
