@@ -40,3 +40,5 @@ $_lang['voteforms_grid_actions'] = 'Actions';
 $_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
+
+$_lang['VoteForm_err_ns'] = 'Вы должны указать id.';

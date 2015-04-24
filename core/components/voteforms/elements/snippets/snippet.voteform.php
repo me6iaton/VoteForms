@@ -46,7 +46,7 @@ if (!$thread = $modx->getObject('TicketThread', array('name' => $scriptPropertie
   ));
   $thread->save();
 }
-$threadId = $thread->get('id');
+$scriptProperties['thread'] = $thread->get('id');
 
 // get fields
 $default = array(
@@ -88,7 +88,10 @@ if (!empty($rows) && is_array($rows)) {
 if (empty($outputSeparator)) {
   $outputSeparator = "\n";
 }
-$output = implode($outputSeparator, $output);;
-$output = $pdoFetch->getChunk($tplOuter, array('output'=> $output), $pdoFetch->config['fastMode']);
+$output = implode($outputSeparator, $output);
+$outputData = array_merge(array(
+  'output' => $output
+), $scriptProperties);
+$output = $pdoFetch->getChunk($tplOuter, $outputData, $pdoFetch->config['fastMode']);
 // By default just return output
 return $output;

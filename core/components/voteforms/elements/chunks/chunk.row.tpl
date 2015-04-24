@@ -3,6 +3,6 @@
         [[+name]]
     </label>
     <div class="col-sm-10">
-        <div data-score="[[+record]]" class="raty"></div>
+        <div data-id="[[+id]]" data-score="[[+record]]" class="raty"></div>
     </div>
 </div>
