@@ -56,8 +56,8 @@ do($ = window.jQuery, window) ->
         score = +$this.raty('score')
         id = +$this.data('id')
         if score and id
-          @data.fields = @data.fields.filter () ->
-            @.id != id
+          @data.fields = @data.fields.filter (element) ->
+            (element.id != id)
           @data.fields.push({id: id, value: score})
         ###validation submit###
         if (@data.fields.length) == @$ratys.length
@@ -70,7 +70,7 @@ do($ = window.jQuery, window) ->
           url: @options.actionUrl
           type: 'post'
           dataType: 'json'
-          data: $.extend({action: 'record/create_multiple'}, @data)
+          data: $.extend({action: 'record/record_multiple'}, @data)
         .done (data) ->
           stop
           return
@@ -90,6 +90,7 @@ do($ = window.jQuery, window) ->
       if err.responseJSON?.errors
         jQuery.each err.responseJSON.errors, ()->
           message = message + @msg + '<br>'
+      message = err.responseText if !message
       message = 'неизвестная ошибка' if !message
       @$el.find(@selectors.alert.message).html(message)
       @$el.find(@selectors.alert.conteiner).show()

@@ -69,8 +69,8 @@
             score = +$this.raty('score');
             id = +$this.data('id');
             if (score && id) {
-              _this.data.fields = _this.data.fields.filter(function() {
-                return this.id !== id;
+              _this.data.fields = _this.data.fields.filter(function(element) {
+                return element.id !== id;
               });
               _this.data.fields.push({
                 id: id,
@@ -93,7 +93,7 @@
               type: 'post',
               dataType: 'json',
               data: $.extend({
-                action: 'record/create_multiple'
+                action: 'record/record_multiple'
               }, _this.data)
             }).done(function(data) {
               stop;
@@ -123,6 +123,9 @@
           jQuery.each(err.responseJSON.errors, function() {
             return message = message + this.msg + '<br>';
           });
+        }
+        if (!message) {
+          message = err.responseText;
         }
         if (!message) {
           message = 'неизвестная ошибка';
