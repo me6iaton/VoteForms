@@ -6,6 +6,10 @@
         <div class="vtf-message"></div>
     </div>
     [[+output]]
+    [[+submit]]
+</form>
+<form></form>
+<!--pdotools_submit
     <div class="form-group">
         <div class=" col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default vtf-submit" disabled="disabled">
@@ -13,5 +17,4 @@
             </button>
         </div>
     </div
-</form>
-<form></form>
+-->

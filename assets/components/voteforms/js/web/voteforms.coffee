@@ -16,6 +16,7 @@ do($ = window.jQuery, window) ->
         container: '.vtf'
         submit: '.vtf-submit'
         raty: '.raty'
+        iconDone: '.icon-done'
         alert:
           conteiner: '.vtf-alert'
           message: '.vtf-message'
@@ -26,9 +27,12 @@ do($ = window.jQuery, window) ->
       @selectors = @options.selectors
       @$el = $(el)
       @$ratys = @$el.find(@selectors.raty)
+      @$submit = @$el.find(@selectors.submit)
       @data =
+        action: 'record/record_multiple'
         form: @$el.data('form')
         thread: @$el.data('thread')
+        fields: []
         fields: jQuery.makeArray @$ratys.map ()->
           score = +$(@).data('score')
           id = +$(@).data('id')
@@ -51,30 +55,20 @@ do($ = window.jQuery, window) ->
         @$el.find(@selectors.alert.conteiner).hide()
 
       @$el.on 'click', @selectors.raty, (e) =>
-        ###store @data.fields ###
-        $this = $(e.currentTarget)
-        score = +$this.raty('score')
-        id = +$this.data('id')
-        if score and id
-          @data.fields = @data.fields.filter (element) ->
-            (element.id != id)
-          @data.fields.push({id: id, value: score})
+        if(!@$submit.length)
+          $this = $(e.currentTarget)
+          @_sendRecors([{id: $this.data('id'), value: $this.raty('score')}], e.currentTarget)
         ###validation submit###
         if (@data.fields.length) == @$ratys.length
-          @$el.find(@selectors.submit).removeAttr('disabled')
+          @$submit.removeAttr('disabled')
 
-      @$el.on 'click', @selectors.submit, () =>
-        @$el.find(@selectors.alert.conteiner).hide()
-        @$el.find(@selectors.alert.message).html('')
-        $.ajax
-          url: @options.actionUrl
-          type: 'post'
-          dataType: 'json'
-          data: $.extend({action: 'record/record_multiple'}, @data)
-        .done (data) ->
-          stop
-          return
-        .fail @_showError
+      @$el.on 'click', @selectors.submit, (e) =>
+        @_sendRecors(
+          jQuery.makeArray @$ratys.map ()->
+            score = +$(@).raty('score')
+            id = +$(@).data('id')
+            return  {id: id, value: score} if score and id
+        , e.currentTarget)
         return
 
     _ready: ->
@@ -85,7 +79,29 @@ do($ = window.jQuery, window) ->
           score: ->
             $(@).attr 'data-score'
 
-    _showError: (err) =>
+    _sendRecors: (fields, currentTarget) =>
+      @$el.find(@selectors.alert.conteiner).hide()
+      @$el.find(@selectors.alert.message).html('')
+      @currentTarget = currentTarget
+      $.ajax
+        url: @options.actionUrl
+        type: 'post'
+        dataType: 'json'
+        data: $.extend(@data, {fields: fields})
+      .done @_showDone
+      .fail @_showFail
+      return
+
+    _showDone: (data) =>
+      $iconDone = $(@currentTarget).parent().find(@selectors.iconDone)
+      $iconDone.show(() =>
+        setTimeout( ()=>
+          $iconDone.hide()
+        , 500 )
+      )
+      return
+
+    _showFail: (err) =>
       message = if err.responseJSON?.message then err.responseJSON?.message +  '<br>' else ''
       if err.responseJSON?.errors
         jQuery.each err.responseJSON.errors, ()->
@@ -97,7 +113,7 @@ do($ = window.jQuery, window) ->
 
 
 
-  # Define the plugin and init
+  # Define the plugin
   $.fn.extend voteForm: (option, args...) ->
     @each ->
       $this = $(this)
@@ -108,4 +124,5 @@ do($ = window.jQuery, window) ->
       if typeof option == 'string'
         data[option].apply(data, args)
 
+#  init
 $('.vtf').voteForm(VoteFormsConfig)

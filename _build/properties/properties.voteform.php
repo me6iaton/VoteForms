@@ -31,6 +31,10 @@ $tmp = array(
     ),
     'value' => 'ASC'
   ),
+  'submit' => array(
+    'type' => 'combo-boolean',
+    'value' => false,
+  ),
 //  'limit' => array(
 //    'type' => 'numberfield',
 //    'value' => 10,
@@ -38,10 +42,6 @@ $tmp = array(
 //  'outputSeparator' => array(
 //    'type' => 'textfield',
 //    'value' => "\n",
-//  ),
-//  'toPlaceholder' => array(
-//    'type' => 'combo-boolean',
-//    'value' => false,
 //  ),
 );
 
