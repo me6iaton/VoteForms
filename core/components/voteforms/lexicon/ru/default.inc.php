@@ -42,6 +42,8 @@ $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
 
+$_lang['voteforms_record_err_active'] = 'Эта форма отключена';
+
 $_lang['VoteForm_err_ns'] = 'Вы должны указать id.';
 $_lang['voteforms_err_form'] = 'Вы должны указать id формы.';
 $_lang['voteforms_err_field'] = 'Вы должны указать id поля.';
