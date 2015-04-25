@@ -6,6 +6,7 @@
         <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="description" dbtype="text" phptype="text" null="true" default=""/>
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+        <field key="rating_number" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="5"/>
 
         <composite alias="Fields" class="VoteFormField" local="id" foreign="form" cardinality="many" owner="local"/>
         <composite alias="Threads" class="VoteFormThread" local="id" foreign="form" cardinality="many" owner="local"/>
@@ -26,6 +27,7 @@
     <object class="VoteFormThread" table="voteforms_threads" extends="xPDOSimpleObject">
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="rating" dbtype="float"  phptype="float" attributes="unsigned" null="false" default="0"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="thread" cardinality="many" owner="local"/>
         <aggregate alias="Form" class="VoteForm" local="form" foreign="id" cardinality="one" owner="foreign"/>

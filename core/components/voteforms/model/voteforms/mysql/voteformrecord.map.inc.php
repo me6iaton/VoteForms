@@ -3,7 +3,7 @@ $xpdo_meta_map['VoteFormRecord']= array (
   'package' => 'voteforms',
   'version' => '1.1',
   'table' => 'voteforms_records',
-  'extends' => 'xPDOSimpleObject',
+  'extends' => 'xPDOObject',
   'fields' => 
   array (
     'form' => 0,
@@ -22,6 +22,7 @@ $xpdo_meta_map['VoteFormRecord']= array (
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
+      'index' => 'pk',
     ),
     'field' => 
     array (
@@ -31,6 +32,7 @@ $xpdo_meta_map['VoteFormRecord']= array (
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
+      'index' => 'pk',
     ),
     'thread' => 
     array (
@@ -40,6 +42,7 @@ $xpdo_meta_map['VoteFormRecord']= array (
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
+      'index' => 'pk',
     ),
     'createdby' => 
     array (
@@ -49,6 +52,7 @@ $xpdo_meta_map['VoteFormRecord']= array (
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
+      'index' => 'pk',
     ),
     'integer' => 
     array (
@@ -58,6 +62,43 @@ $xpdo_meta_map['VoteFormRecord']= array (
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
+    ),
+  ),
+  'indexes' => 
+  array (
+    'unique_key' => 
+    array (
+      'alias' => 'unique_key',
+      'primary' => true,
+      'unique' => true,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'form' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+        'field' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+        'thread' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+        'createdby' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
     ),
   ),
   'aggregates' => 

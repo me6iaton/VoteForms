@@ -1,2 +1,2 @@
 <?php
-class VoteFormRecord extends xPDOSimpleObject {}
+class VoteFormRecord extends xPDOObject {}

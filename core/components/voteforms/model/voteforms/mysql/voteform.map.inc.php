@@ -9,6 +9,7 @@ $xpdo_meta_map['VoteForm']= array (
     'name' => '',
     'description' => '',
     'active' => 1,
+    'rating_number' => 5,
   ),
   'fieldMeta' => 
   array (
@@ -34,6 +35,15 @@ $xpdo_meta_map['VoteForm']= array (
       'phptype' => 'boolean',
       'null' => true,
       'default' => 1,
+    ),
+    'rating_number' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'attributes' => 'unsigned',
+      'phptype' => 'integer',
+      'null' => false,
+      'default' => 5,
     ),
   ),
   'composites' => 
