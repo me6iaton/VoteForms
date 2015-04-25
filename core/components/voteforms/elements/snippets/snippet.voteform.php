@@ -38,8 +38,8 @@ $sortdir = $modx->getOption('sortbir', $scriptProperties, 'ASC');
 
 // Prepare Voteforms Thread
 /** @var TicketThread $thread */
-if (!$thread = $modx->getObject('TicketThread', array('name' => $scriptProperties['thread']))) {
-  $thread = $modx->newObject('TicketThread');
+if (!$thread = $modx->getObject('VoteFormThread', array('name' => $scriptProperties['thread']))) {
+  $thread = $modx->newObject('VoteFormThread');
   $thread->fromArray(array(
     'form' => $formId,
     'name' => $scriptProperties['thread'],
