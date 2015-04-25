@@ -212,7 +212,7 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
             dataIndex: 'actions',
             renderer: VoteForms.utils.renderActions,
             sortable: false,
-            width: 110,
+            width: 130,
             id: 'actions'
         }];
     },

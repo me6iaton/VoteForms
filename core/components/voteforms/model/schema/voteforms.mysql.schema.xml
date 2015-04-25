@@ -25,6 +25,7 @@
     </object>
 
     <object class="VoteFormThread" table="voteforms_threads" extends="xPDOSimpleObject">
+        <field key="resource" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="rating" dbtype="float"  phptype="float" attributes="unsigned" null="false" default="0"/>

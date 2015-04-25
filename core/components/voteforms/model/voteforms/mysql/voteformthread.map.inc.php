@@ -6,12 +6,22 @@ $xpdo_meta_map['VoteFormThread']= array (
   'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
+    'resource' => 0,
     'form' => 0,
     'name' => '',
     'rating' => 0,
   ),
   'fieldMeta' => 
   array (
+    'resource' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => false,
+      'default' => 0,
+    ),
     'form' => 
     array (
       'dbtype' => 'int',
