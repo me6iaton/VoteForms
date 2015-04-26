@@ -12,10 +12,14 @@ $_lang['voteforms_item_description'] = 'Описание';
 $_lang['voteforms_item_active'] = 'Активно';
 $_lang['voteforms_item_index'] = 'Порядок';
 $_lang['voteforms_item_type'] = 'Тип';
+$_lang['voteforms_item_form'] = 'Форма';
+$_lang['voteforms_item_resource'] = 'Ресурс';
+$_lang['voteforms_item_rating'] = 'Рейтинг';
 
 $_lang['voteforms_item_create'] = 'Создать элемент';
 $_lang['voteforms_item_update'] = 'Изменить элемент';
 $_lang['voteforms_item_update_fields'] = 'Изменить поля';
+$_lang['voteforms_items_update_fields'] = 'Изменить поля элементов';
 $_lang['voteforms_item_enable'] = 'Включить элемент';
 $_lang['voteforms_items_enable'] = 'Включить элементы';
 $_lang['voteforms_item_disable'] = 'Отключить элемент';
@@ -38,9 +42,14 @@ $_lang['voteforms_item_err_save'] = 'Ошибка при сохранении э
 $_lang['voteforms_grid_search'] = 'Поиск';
 $_lang['voteforms_grid_actions'] = 'Действия';
 
+$_lang['voteforms_forms'] = 'Формы';
 $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
+
+$_lang['voteforms_threads'] = 'Треды';
+$_lang['voteforms_thread_update_resource'] = 'Изменить ресурс';
+
 
 $_lang['voteforms_record_err_active'] = 'Эта форма отключена';
 

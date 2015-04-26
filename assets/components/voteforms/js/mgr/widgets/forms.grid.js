@@ -13,10 +13,7 @@ VoteForms.grid.Forms = function (config) {
             action: 'mgr/form/getlist'
         },
         listeners: {
-            rowDblClick: function (grid, rowIndex, e) {
-                var row = grid.store.getAt(rowIndex);
-                this.updateItem(grid, e, row);
-            }
+            rowDblClick: this.updateItemFields
         },
         viewConfig: {
             forceFit: true,

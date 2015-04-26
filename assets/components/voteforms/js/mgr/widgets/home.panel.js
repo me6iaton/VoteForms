@@ -21,14 +21,21 @@ VoteForms.panel.Home = function (config) {
             border: true,
             hideMode: 'offsets',
             items: [{
-                title: _('voteforms_items'),
+                title: _('voteforms_threads'),
                 layout: 'anchor',
                 items: [{
-                    html: _('voteforms_intro_msg'),
-                    cls: 'panel-desc',
-                }, {
+                    xtype: 'voteforms-grid-threads',
+                    cls: 'main-wrapper',
+                }]
+            },{
+                title: _('voteforms_forms'),
+                layout: 'anchor',
+                items: [{
                     xtype: 'voteforms-grid-forms',
                     cls: 'main-wrapper',
+                }, {
+                    html: _('voteforms_intro_msg'),
+                    cls: 'panel-desc',
                 }]
             }]
         }]

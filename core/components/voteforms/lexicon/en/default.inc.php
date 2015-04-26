@@ -12,10 +12,14 @@ $_lang['voteforms_item_description'] = 'Description';
 $_lang['voteforms_item_active'] = 'Active';
 $_lang['voteforms_item_index'] = 'Index';
 $_lang['voteforms_item_type'] = 'Type';
+$_lang['voteforms_item_form'] = 'Form';
+$_lang['voteforms_item_resource'] = 'Resource';
+$_lang['voteforms_item_rating'] = 'Rating';
 
 $_lang['voteforms_item_create'] = 'Create Item';
 $_lang['voteforms_item_update'] = 'Update Item';
 $_lang['voteforms_item_update_fields'] = 'Update fields';
+$_lang['voteforms_items_update_fields'] = 'Update fields items';
 $_lang['voteforms_item_enable'] = 'Enable Item';
 $_lang['voteforms_items_enable'] = 'Enable Items';
 $_lang['voteforms_item_disable'] = 'Disable Item';
@@ -37,10 +41,18 @@ $_lang['voteforms_item_err_save'] = 'An error occurred while trying to save the 
 $_lang['voteforms_grid_search'] = 'Search';
 $_lang['voteforms_grid_actions'] = 'Actions';
 
-$_lang['voteforms_record_err_active'] = 'Эта форма отключена';
-
+$_lang['voteforms_forms'] = 'Forms';
 $_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
-$_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
+$_lang['voteforms_form_err_no_auth'] = 'Error no auth';
 
-$_lang['VoteForm_err_ns'] = 'Вы должны указать id.';
+$_lang['voteforms_threads'] = 'Threads';
+$_lang['voteforms_thread_update_resource'] = 'Update resource';
+
+$_lang['voteforms_record_err_active'] = 'This form disable';
+
+$_lang['VoteForm_err_ns'] = 'You must specify the id.';
+$_lang['voteforms_err_form'] = 'You must specify the form id.';
+$_lang['voteforms_err_field'] = 'You must specify the field id.';
+$_lang['voteforms_err_thread'] = 'You must specify the thread id.';
+$_lang['voteforms_err_createdby'] = 'You must specify the user id.';
