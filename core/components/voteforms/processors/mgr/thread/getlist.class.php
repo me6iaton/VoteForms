@@ -6,7 +6,7 @@
 class VoteFormThreadGetListProcessor extends modObjectGetListProcessor {
   public $objectType = 'VoteFormThread';
   public $classKey = 'VoteFormThread';
-  public $defaultSortField = 'id';
+  public $defaultSortField = 'rating';
   public $defaultSortDirection = 'DESC';
   //public $permission = 'list';
 
