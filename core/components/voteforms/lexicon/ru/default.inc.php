@@ -43,13 +43,14 @@ $_lang['voteforms_grid_search'] = 'Поиск';
 $_lang['voteforms_grid_actions'] = 'Действия';
 
 $_lang['voteforms_forms'] = 'Формы';
+$_lang['voteforms_form_rating_max'] = 'Максимальный рейтинг';
 $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
+$_lang['voteforms_form_err_rating_max'] = 'Нельзя изменить максимальный рейтинг после записи результатов голосования';
 
 $_lang['voteforms_threads'] = 'Треды';
 $_lang['voteforms_thread_update_resource'] = 'Изменить ресурс';
-
 
 $_lang['voteforms_record_err_active'] = 'Эта форма отключена';
 

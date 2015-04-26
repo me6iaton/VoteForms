@@ -42,9 +42,11 @@ $_lang['voteforms_grid_search'] = 'Search';
 $_lang['voteforms_grid_actions'] = 'Actions';
 
 $_lang['voteforms_forms'] = 'Forms';
+$_lang['voteforms_form_rating_max'] = 'Max rating';
 $_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
 $_lang['voteforms_form_err_no_auth'] = 'Error no auth';
+$_lang['voteforms_form_err_rating_max'] = 'Disable after add records';
 
 $_lang['voteforms_threads'] = 'Threads';
 $_lang['voteforms_thread_update_resource'] = 'Update resource';

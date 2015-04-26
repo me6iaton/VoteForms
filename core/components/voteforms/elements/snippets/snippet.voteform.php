@@ -75,16 +75,18 @@ $default = array(
   'select' => array(
     'VoteFormField' => '*',
     'Record' => 'Record.integer as record',
+    'Form' => 'Form.rating_max as rating_max',
   ),
   'return' => 'data',
 );
 $pdoFetch->setConfig($default);
 $rows = $pdoFetch->run();
-
+$ratingMax = null;
 // Processing rows
 $output = array();
 if (!empty($rows) && is_array($rows)) {
   foreach ($rows as $k => $row) {
+    $ratingMax = $row['rating_max'];
     $output[] = $pdoFetch->getChunk($tplRow, $row, $pdoFetch->config['fastMode']);
   }
 }
@@ -95,7 +97,8 @@ if (empty($outputSeparator)) {
 }
 $output = implode($outputSeparator, $output);
 $outputData = array_merge(array(
-  'output' => $output
+  'output' => $output,
+  'ratingMax' => $ratingMax
 ), $scriptProperties);
 $output = $pdoFetch->getChunk($tplOuter, $outputData, $pdoFetch->config['fastMode']);
 // By default just return output

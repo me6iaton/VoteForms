@@ -36,6 +36,12 @@ Ext.extend(VoteForms.window.CreateItem, MODx.Window, {
             height: 150,
             anchor: '99%'
         }, {
+            xtype: 'numberfield',
+            fieldLabel: _('voteforms_form_rating_max'),
+            name: 'rating_max',
+            originalValue: 5,
+            id: config.id + '-rating_max',
+        }, {
             xtype: 'xcheckbox',
             boxLabel: _('voteforms_item_active'),
             name: 'active',
@@ -89,6 +95,11 @@ Ext.extend(VoteForms.window.UpdateItem, MODx.Window, {
             id: config.id + '-description',
             anchor: '99%',
             height: 150,
+        }, {
+            xtype: 'numberfield',
+            fieldLabel: _('voteforms_form_rating_max'),
+            name: 'rating_max',
+            id: config.id + '-rating_max',
         }, {
             xtype: 'xcheckbox',
             boxLabel: _('voteforms_item_active'),

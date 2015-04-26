@@ -29,6 +29,7 @@
         this.$el = $(el);
         this.$ratys = this.$el.find(this.selectors.raty);
         this.$submit = this.$el.find(this.selectors.submit);
+        this.ratingMax = this.$el.data('ratingMax');
         this.data = {
           action: 'record/record_multiple',
           form: this.$el.data('form'),
@@ -107,7 +108,7 @@
           return function() {
             return _this.$ratys.raty({
               starType: 'i',
-              number: 10,
+              number: _this.ratingMax,
               score: function() {
                 return $(this).attr('data-score');
               }

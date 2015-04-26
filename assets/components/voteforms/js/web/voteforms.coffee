@@ -28,6 +28,7 @@ do($ = window.jQuery, window) ->
       @$el = $(el)
       @$ratys = @$el.find(@selectors.raty)
       @$submit = @$el.find(@selectors.submit)
+      @ratingMax = @$el.data('ratingMax')
       @data =
         action: 'record/record_multiple'
         form: @$el.data('form')
@@ -75,7 +76,7 @@ do($ = window.jQuery, window) ->
       $(document).ready =>
         @$ratys.raty
           starType: 'i'
-          number: 10
+          number: @ratingMax
           score: ->
             $(@).attr 'data-score'
 
