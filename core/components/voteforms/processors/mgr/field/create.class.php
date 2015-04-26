@@ -21,9 +21,6 @@ class VoteFormFieldCreateProcessor extends modObjectCreateProcessor {
     if (empty($name)) {
       $this->modx->error->addField('name', $this->modx->lexicon('voteforms_item_err_name'));
     }
-    elseif ($this->modx->getCount($this->classKey, array('name' => $name))) {
-      $this->modx->error->addField('name', $this->modx->lexicon('voteforms_item_err_ae'));
-    }
 
     if (empty($form)) {
       $this->modx->error->addField('form', $this->modx->lexicon('voteforms_item_err_form'));
