@@ -6,22 +6,22 @@ $tmp = array(
   'core_path' => array(
     'xtype' => 'textfield',
     'value' => PKG_CORE_PATH,
-    'area' => 'voteforms.main',
+    'area' => 'voteforms_main',
   ),
   'assets_url' => array(
     'xtype' => 'textfield',
     'value' => PKG_ASSETS_URL,
-    'area' => 'voteforms.main',
+    'area' => 'voteforms_main',
   ),
   'frontend_css' => array(
     'value' => '[[+cssUrl]]web/voteforms.css',
     'xtype' => 'textfield',
-    'area' => 'tickets.main',
+    'area' => 'voteforms_main',
   ),
   'frontend_js' => array(
     'value' => '[[+jsUrl]]web/voteforms.js',
     'xtype' => 'textfield',
-    'area' => 'tickets.main',
+    'area' => 'voteforms_main',
   ),
 );
 

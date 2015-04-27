@@ -35,14 +35,6 @@ $tmp = array(
     'type' => 'combo-boolean',
     'value' => false,
   ),
-//  'limit' => array(
-//    'type' => 'numberfield',
-//    'value' => 10,
-//  ),
-//  'outputSeparator' => array(
-//    'type' => 'textfield',
-//    'value' => "\n",
-//  ),
 );
 
 foreach ($tmp as $k => $v) {

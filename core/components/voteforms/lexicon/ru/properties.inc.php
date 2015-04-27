@@ -1,9 +1,12 @@
 <?php
-
-$_lang['voteforms_prop_limit'] = 'Ограничение вывода Предметов на странице.';
-$_lang['voteforms_prop_outputSeparator'] = 'Разделитель вывода строк.';
-$_lang['voteforms_prop_sortBy'] = 'Поле сортировки.';
-$_lang['voteforms_prop_sortDir'] = 'Направление сортировки.';
-$_lang['voteforms_prop_tpl'] = 'Чанк оформления каждого ряда Предметов.';
-$_lang['voteforms_prop_toPlaceholder'] = 'Усли указан этот параметр, то результат будет сохранен в плейсхолдер, вместо прямого вывода на странице.';
+$_lang['voteforms_prop_id'] = 'Id формы, обязательный параметр';
+$_lang['voteforms_prop_thread'] = 'Имя ветки для записи результатов. По умолчанию, "resource-[[*id]]".';
+$_lang['voteforms_prop_tplRow'] = 'Чанк оформления для каждого поля';
+$_lang['voteforms_prop_tplOuter'] = 'Чанк оформления всего содержимого';
+$_lang['voteforms_prop_tpl'] = 'Чанк оформления.';
+$_lang['voteforms_prop_sortby'] = 'Поле сортировки.';
+$_lang['voteforms_prop_sortdir'] = 'Направление сортировки.';
 $_lang['voteforms_prop_submit'] = 'Исползовать кнопку отправить в форме';
+$_lang['voteforms_prop_form'] = 'Id формы, обязательный параметр';
+$_lang['voteforms_prop_resource'] = 'Id ресурса';
+$_lang['voteforms_prop_stars'] = 'Выводить виджет с результатами голосования или нет';
