@@ -10,7 +10,11 @@
         selectors: {
           container: '.vtf',
           submit: '.vtf-submit',
-          raty: '.raty',
+          rating: '.vtf-rating',
+          raty: {
+            all: '.raty',
+            active: ".raty:not('.read-only')"
+          },
           iconDone: '.icon-done',
           alert: {
             conteiner: '.vtf-alert',
@@ -22,12 +26,13 @@
 
       function VoteForm(el, options) {
         this._showFail = bind(this._showFail, this);
+        this._showRating = bind(this._showRating, this);
         this._showDone = bind(this._showDone, this);
         this._sendRecors = bind(this._sendRecors, this);
         this.options = $.extend({}, this.defaults, options);
         this.selectors = this.options.selectors;
         this.$el = $(el);
-        this.$ratys = this.$el.find(this.selectors.raty);
+        this.$ratys = this.$el.find(this.selectors.raty.all);
         this.$submit = this.$el.find(this.selectors.submit);
         this.ratingMax = this.$el.data('ratingMax');
         this.data = {
@@ -47,6 +52,11 @@
             }
           }))
         };
+        this.dataShowRating = {
+          action: 'thread/get',
+          id: this.data.thread
+        };
+        this.$elsShowRating = $('.vtf-thread-' + this.data.thread);
       }
 
       VoteForm.prototype.init = function() {
@@ -67,7 +77,7 @@
             return _this.$el.find(_this.selectors.alert.conteiner).hide();
           };
         })(this));
-        this.$el.on('click', this.selectors.raty, (function(_this) {
+        this.$el.on('click', this.selectors.raty.active, (function(_this) {
           return function(e) {
             var $this;
             if (!_this.$submit.length) {
@@ -109,6 +119,9 @@
             return _this.$ratys.raty({
               starType: 'i',
               number: _this.ratingMax,
+              readOnly: function() {
+                return $(this).attr('data-read-only');
+              },
               score: function() {
                 return $(this).attr('data-score');
               }
@@ -133,6 +146,7 @@
 
       VoteForm.prototype._showDone = function(data) {
         var $iconDone;
+        this._showRating();
         $iconDone = $(this.currentTarget).parent().find(this.selectors.iconDone);
         $iconDone.show((function(_this) {
           return function() {
@@ -141,6 +155,23 @@
             }, 500);
           };
         })(this));
+      };
+
+      VoteForm.prototype._showRating = function() {
+        $.ajax({
+          url: this.options.actionUrl,
+          type: 'post',
+          dataType: 'json',
+          data: this.dataShowRating
+        }).done((function(_this) {
+          return function(data) {
+            _this.$elsShowRating.find(_this.selectors.raty.all).raty('set', {
+              score: data.object.rating
+            });
+            _this.$elsShowRating.find(_this.selectors.rating).html(data.object.rating);
+            data.object.id;
+          };
+        })(this)).fail(this._showFail);
       };
 
       VoteForm.prototype._showFail = function(err) {

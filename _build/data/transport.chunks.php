@@ -11,6 +11,10 @@ $tmp = array(
     'file' => 'row',
     'description' => '',
   ),
+  'tpl.VoteForms.rating' => array(
+    'file' => 'rating',
+    'description' => '',
+  ),
 );
 
 // Save chunks for setup options

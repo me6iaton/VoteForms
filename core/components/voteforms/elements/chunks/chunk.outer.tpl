@@ -1,4 +1,4 @@
-<form class="form-horizontal vtf" data-rating-max="[[+ratingMax]]" data-form="[[+id]]"  data-thread="[[+thread]]">
+<form class="form-horizontal vtf" data-rating-max="[[+rating_max]]" data-form="[[+id]]"  data-thread="[[+thread]]">
     <div class="alert alert-danger alert-dismissible vtf-alert" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

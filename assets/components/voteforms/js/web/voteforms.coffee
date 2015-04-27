@@ -15,7 +15,10 @@ do($ = window.jQuery, window) ->
       selectors:
         container: '.vtf'
         submit: '.vtf-submit'
-        raty: '.raty'
+        rating: '.vtf-rating'
+        raty:
+          all: '.raty'
+          active: ".raty:not('.read-only')"
         iconDone: '.icon-done'
         alert:
           conteiner: '.vtf-alert'
@@ -26,7 +29,7 @@ do($ = window.jQuery, window) ->
       @options = $.extend({}, @defaults, options)
       @selectors = @options.selectors
       @$el = $(el)
-      @$ratys = @$el.find(@selectors.raty)
+      @$ratys = @$el.find(@selectors.raty.all)
       @$submit = @$el.find(@selectors.submit)
       @ratingMax = @$el.data('ratingMax')
       @data =
@@ -38,6 +41,10 @@ do($ = window.jQuery, window) ->
           score = +$(@).data('score')
           id = +$(@).data('id')
           return  {id: id, value: score} if score and id
+      @dataShowRating =
+        action: 'thread/get'
+        id: @data.thread
+      @$elsShowRating = $('.vtf-thread-'+@data.thread)
     # Additional plugin methods go here
     init: () ->
       if !jQuery().raty
@@ -55,7 +62,7 @@ do($ = window.jQuery, window) ->
       @$el.on 'click', @selectors.alert.close, () =>
         @$el.find(@selectors.alert.conteiner).hide()
 
-      @$el.on 'click', @selectors.raty, (e) =>
+      @$el.on 'click', @selectors.raty.active, (e) =>
         if(!@$submit.length)
           $this = $(e.currentTarget)
           @_sendRecors([{id: $this.data('id'), value: $this.raty('score')}], e.currentTarget)
@@ -77,6 +84,8 @@ do($ = window.jQuery, window) ->
         @$ratys.raty
           starType: 'i'
           number: @ratingMax
+          readOnly: ->
+            $(@).attr 'data-read-only'
           score: ->
             $(@).attr 'data-score'
 
@@ -94,6 +103,7 @@ do($ = window.jQuery, window) ->
       return
 
     _showDone: (data) =>
+      @_showRating()
       $iconDone = $(@currentTarget).parent().find(@selectors.iconDone)
       $iconDone.show(() =>
         setTimeout( ()=>
@@ -101,6 +111,21 @@ do($ = window.jQuery, window) ->
         , 500 )
       )
       return
+
+    _showRating: () =>
+      $.ajax
+        url: @options.actionUrl
+        type: 'post'
+        dataType: 'json'
+        data: @dataShowRating
+      .done (data) =>
+        @$elsShowRating.find(@selectors.raty.all).raty('set', {score: data.object.rating})
+        @$elsShowRating.find(@selectors.rating).html(data.object.rating)
+        data.object.id
+        return
+      .fail @_showFail
+      return
+
 
     _showFail: (err) =>
       message = if err.responseJSON?.message then err.responseJSON?.message +  '<br>' else ''
@@ -111,7 +136,6 @@ do($ = window.jQuery, window) ->
       message = 'неизвестная ошибка' if !message
       @$el.find(@selectors.alert.message).html(message)
       @$el.find(@selectors.alert.conteiner).show()
-
 
 
   # Define the plugin

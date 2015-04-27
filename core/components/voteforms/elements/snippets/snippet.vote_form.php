@@ -81,8 +81,8 @@ $default = array(
 );
 $pdoFetch->setConfig($default);
 $rows = $pdoFetch->run();
-$ratingMax = null;
 // Processing rows
+$ratingMax = null;
 $output = array();
 if (!empty($rows) && is_array($rows)) {
   foreach ($rows as $k => $row) {
@@ -98,7 +98,7 @@ if (empty($outputSeparator)) {
 $output = implode($outputSeparator, $output);
 $outputData = array_merge(array(
   'output' => $output,
-  'ratingMax' => $ratingMax
+  'rating_max' => $ratingMax
 ), $scriptProperties);
 $output = $pdoFetch->getChunk($tplOuter, $outputData, $pdoFetch->config['fastMode']);
 // By default just return output

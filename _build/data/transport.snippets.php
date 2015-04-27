@@ -4,7 +4,11 @@ $snippets = array();
 
 $tmp = array(
   'VoteForm' => array(
-    'file' => 'voteform',
+    'file' => 'vote_form',
+    'description' => '',
+  ),
+  'getVoteFormRating' => array(
+    'file' => 'get_rating',
     'description' => '',
   ),
 );
