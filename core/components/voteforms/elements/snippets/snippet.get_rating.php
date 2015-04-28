@@ -25,16 +25,52 @@ if (empty($form)) {
 }
 $resource = $modx->getOption('resource', $scriptProperties, $modx->resource->id, true);
 $thread = $modx->getOption('thread', $scriptProperties, 'resource-' . $resource, true);
+$field = $modx->getOption('field', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $stars = $modx->getOption('stars', $scriptProperties);
 
-$outputData = $pdoFetch->getArray('VoteFormThread',
-  array (
-    'form' => $form,
-    'resource' => $resource,
-    'name' => $thread,
-),array(
-    'leftJoin'=> array(
+if($field){
+  $default = array(
+    'class' => 'VoteFormThread',
+    'where' => array(
+      'form' => $form,
+      'resource' => $resource,
+      'name' => $thread,
+    ),
+    'leftJoin' => array(
+      'Form' => array(
+        'class' => 'VoteForm',
+        'on' => 'VoteFormThread.form = Form.id'
+      ),
+      'Record'=>array(
+        'class' => 'VoteFormRecord',
+        'on' => "VoteFormThread.form = Record.form" .
+          " AND VoteFormThread.id = Record.thread" .
+          " AND {$field} = Record.field"
+      ),
+      'Field' => array(
+        'class' => 'VoteFormField',
+        'on' => "{$field} = Field.id"
+      ),
+    ),
+    'groupby' => 'Record.thread',
+    'select' => array(
+      'VoteFormThread' => '*',
+      'Form' => $modx->getSelectColumns('VoteForm', 'Form', 'form.', array(), true),
+      'Field' => $modx->getSelectColumns('VoteFormField', 'Field', 'field.', array(), true),
+      'Record' => 'ROUND(AVG(`integer`), 2) AS `rating`',
+    ),
+    'return' => 'data',
+  );
+}else{
+  $default = array(
+    'class' => 'VoteFormThread',
+    'where' => array(
+      'form' => $form,
+      'resource' => $resource,
+      'name' => $thread,
+    ),
+    'leftJoin' => array(
       'Form' => array(
         'class' => 'VoteForm',
         'on' => 'VoteFormThread.form = Form.id'
@@ -42,12 +78,29 @@ $outputData = $pdoFetch->getArray('VoteFormThread',
     'select' => array(
       'VoteFormThread' => '*',
       'Form' => $modx->getSelectColumns('VoteForm', 'Form', 'form.', array(), true),
-    )
-  ));
-$test = $modx->getSelectColumns('VoteForm', 'Form', 'form.', array('id', 'name'), true);
-//$modx->getSelectColumns('TicketsSection', 'Section', 'section.', array('content'), true),
-$outputData['stars'] = $stars;
+    ),
+    'return' => 'data',
+  );
+}
 
+$pdoFetch->setConfig($default);
+$outputData= $pdoFetch->run();
+$outputData = $outputData[0];
+
+if($stars){
+  $outputData['stars'] =
+    "<div
+    data-read-only='true'
+    data-thread='{$outputData['id']}'
+    data-score='{$outputData['rating']}'
+    class='raty read-only'
+    ></div>";
+}
+if($field){
+  $outputData['class'] = '';
+}else{
+  $outputData['class'] = 'vtf-thread-[[+id]]';
+}
 
 $output = $pdoFetch->getChunk($tpl, $outputData, $pdoFetch->config['fastMode']);
 return $output;
