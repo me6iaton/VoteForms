@@ -2,7 +2,7 @@
 include_once 'setting.inc.php';
 
 $_lang['voteforms'] = 'VoteForms';
-$_lang['voteforms_menu_desc'] = 'A sample Extra to develop from.';
+$_lang['voteforms_menu_desc'] = 'Manage your votes';
 $_lang['voteforms_intro_msg'] = 'You can select multiple items by holding Shift or Ctrl button.';
 
 $_lang['voteforms_items'] = 'Items';

@@ -2,7 +2,7 @@
 include_once 'setting.inc.php';
 
 $_lang['voteforms'] = 'VoteForms';
-$_lang['voteforms_menu_desc'] = 'Пример расширения для разработки.';
+$_lang['voteforms_menu_desc'] = 'Управление голосованиями';
 $_lang['voteforms_intro_msg'] = 'Вы можете выделять сразу несколько элементов при помощи Shift или Ctrl.';
 
 $_lang['voteforms_items'] = 'Элементы';
