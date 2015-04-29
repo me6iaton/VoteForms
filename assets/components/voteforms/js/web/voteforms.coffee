@@ -15,7 +15,8 @@ do($ = window.jQuery, window) ->
       selectors:
         container: '.vtf'
         submit: '.vtf-submit'
-        rating: '.vtf-rating'
+        rating: '.vtf-field-rating'
+        usersCount: '.vtf-field-users-count'
         raty:
           all: '.raty'
           active: ".raty:not('.read-only')"
@@ -121,7 +122,7 @@ do($ = window.jQuery, window) ->
       .done (data) =>
         @$elsShowRating.find(@selectors.raty.all).raty('set', {score: data.object.rating})
         @$elsShowRating.find(@selectors.rating).html(data.object.rating)
-        data.object.id
+        @$elsShowRating.find(@selectors.usersCount).html(data.object.users_count)
         return
       .fail @_showFail
       return

@@ -10,7 +10,8 @@
         selectors: {
           container: '.vtf',
           submit: '.vtf-submit',
-          rating: '.vtf-rating',
+          rating: '.vtf-field-rating',
+          usersCount: '.vtf-field-users-count',
           raty: {
             all: '.raty',
             active: ".raty:not('.read-only')"
@@ -169,7 +170,7 @@
               score: data.object.rating
             });
             _this.$elsShowRating.find(_this.selectors.rating).html(data.object.rating);
-            data.object.id;
+            _this.$elsShowRating.find(_this.selectors.usersCount).html(data.object.users_count);
           };
         })(this)).fail(this._showFail);
       };
