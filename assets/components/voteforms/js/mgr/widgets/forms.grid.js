@@ -187,7 +187,7 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
             header: _('voteforms_item_id'),
             dataIndex: 'id',
             sortable: true,
-            width: 70
+            width: 50
         }, {
             header: _('voteforms_item_name'),
             dataIndex: 'name',

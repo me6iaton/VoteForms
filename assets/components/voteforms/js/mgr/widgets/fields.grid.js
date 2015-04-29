@@ -185,11 +185,16 @@ Ext.extend(VoteForms.grid.Fields, MODx.grid.Grid, {
     },
 
     getFields: function (config) {
-        return ['id','index', 'name', 'description', 'type', 'actions'];
+        return ['id', 'index', 'name', 'description', 'type', 'actions'];
     },
 
     getColumns: function (config) {
         return [{
+            header: _('voteforms_item_id'),
+            dataIndex: 'id',
+            sortable: true,
+            width: 50
+        }, {
             header: _('voteforms_item_index'),
             dataIndex: 'index',
             sortable: true,
@@ -198,17 +203,17 @@ Ext.extend(VoteForms.grid.Fields, MODx.grid.Grid, {
             header: _('voteforms_item_name'),
             dataIndex: 'name',
             sortable: true,
-            width: 200,
+            width: 180,
         }, {
             header: _('voteforms_item_description'),
             dataIndex: 'description',
             sortable: false,
-            width: 250,
+            width: 200,
         }, {
             header: _('voteforms_item_type'),
             dataIndex: 'type',
             sortable: false,
-            width: 100,
+            width: 70,
         }, {
             header: _('voteforms_grid_actions'),
             dataIndex: 'actions',
