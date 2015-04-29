@@ -58,7 +58,7 @@ if($field){
       'VoteFormThread' => '*',
       'Form' => $modx->getSelectColumns('VoteForm', 'Form', 'form.', array(), true),
       'Field' => $modx->getSelectColumns('VoteFormField', 'Field', 'field.', array(), true),
-      'Record' => 'ROUND(AVG(`integer`), 2) AS `rating`',
+      'Record' => 'ROUND(AVG(`integer`), 2) AS `rating`, COUNT(*) AS users_count',
     ),
     'return' => 'data',
   );

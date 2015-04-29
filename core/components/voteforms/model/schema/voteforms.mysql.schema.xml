@@ -29,6 +29,7 @@
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="rating" dbtype="float"  phptype="float" attributes="unsigned" null="false" default="0"/>
+        <field key="users_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="thread" cardinality="many" owner="local"/>
         <aggregate alias="Form" class="VoteForm" local="form" foreign="id" cardinality="one" owner="foreign"/>

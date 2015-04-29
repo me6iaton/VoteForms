@@ -14,6 +14,7 @@ $_lang['voteforms_item_index'] = 'Index';
 $_lang['voteforms_item_type'] = 'Type';
 $_lang['voteforms_item_form'] = 'Form';
 $_lang['voteforms_item_resource'] = 'Resource';
+$_lang['voteforms_item_users_count'] = 'Votes';
 $_lang['voteforms_item_rating'] = 'Rating';
 
 $_lang['voteforms_item_create'] = 'Create Item';
@@ -47,6 +48,8 @@ $_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
 $_lang['voteforms_form_err_no_auth'] = 'Error no auth';
 $_lang['voteforms_form_err_rating_max'] = 'Disable after add records';
+
+$_lang['voteforms_users_count'] = 'Votes:';
 
 $_lang['voteforms_threads'] = 'Threads';
 $_lang['voteforms_thread_update_resource'] = 'Update resource';

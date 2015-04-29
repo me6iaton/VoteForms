@@ -14,6 +14,7 @@ $_lang['voteforms_item_index'] = 'Порядок';
 $_lang['voteforms_item_type'] = 'Тип';
 $_lang['voteforms_item_form'] = 'Форма';
 $_lang['voteforms_item_resource'] = 'Ресурс';
+$_lang['voteforms_item_users_count'] = 'Голоса';
 $_lang['voteforms_item_rating'] = 'Рейтинг';
 
 $_lang['voteforms_item_create'] = 'Создать элемент';
@@ -48,6 +49,8 @@ $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
 $_lang['voteforms_form_err_rating_max'] = 'Нельзя изменить максимальный рейтинг после записи результатов голосования';
+
+$_lang['voteforms_users_count'] = 'Голосов:';
 
 $_lang['voteforms_threads'] = 'Треды';
 $_lang['voteforms_thread_update_resource'] = 'Изменить ресурс';

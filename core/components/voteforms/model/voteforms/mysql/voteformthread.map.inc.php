@@ -10,6 +10,7 @@ $xpdo_meta_map['VoteFormThread']= array (
     'form' => 0,
     'name' => '',
     'rating' => 0,
+    'users_count' => 0,
   ),
   'fieldMeta' => 
   array (
@@ -43,6 +44,15 @@ $xpdo_meta_map['VoteFormThread']= array (
     array (
       'dbtype' => 'float',
       'phptype' => 'float',
+      'attributes' => 'unsigned',
+      'null' => false,
+      'default' => 0,
+    ),
+    'users_count' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,

@@ -66,7 +66,7 @@ Ext.extend(VoteForms.grid.Threads, MODx.grid.Grid, {
     },
 
     getFields: function (config) {
-        return ['id', 'resource', 'form', 'name', 'rating', 'actions'];
+        return ['id', 'resource', 'form', 'name', 'users_count', 'rating', 'actions'];
     },
 
     getColumns: function (config) {
@@ -90,6 +90,11 @@ Ext.extend(VoteForms.grid.Threads, MODx.grid.Grid, {
             dataIndex: 'name',
             sortable: true,
             width: 200,
+        }, {
+            header: _('voteforms_item_users_count'),
+            dataIndex: 'users_count',
+            sortable: true,
+            width: 70,
         }, {
             header: _('voteforms_item_rating'),
             dataIndex: 'rating',

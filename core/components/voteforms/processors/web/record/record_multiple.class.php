@@ -98,11 +98,11 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
       "UPDATE  {$this->modx->getTableName('VoteFormThread')}  AS thread
               CROSS JOIN
               (
-                  SELECT  ROUND(AVG(`integer`), 2) rating
+                  SELECT  ROUND(AVG(`integer`), 2) AS rating, COUNT(DISTINCT createdby) AS total
                   FROM    {$this->modx->getTableName('VoteFormRecord')}
                   WHERE   thread = {$this->threadId}
               ) AS records
-      SET     thread.rating = records.rating
+      SET     thread.rating = records.rating, thread.users_count = records.total
       WHERE   thread.id = {$this->threadId}
     ");
 
