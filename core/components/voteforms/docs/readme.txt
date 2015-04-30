@@ -1,10 +1,10 @@
 --------------------
 VoteForms
 --------------------
-Author: John Doe <john@doe.com>
+Author: Anton Mamrashev <me6iaton@gmail.com>
 --------------------
 
-A basic Extra for MODx Revolution.
+Voting system and surveys for MODX Revolution
 
 Feel free to suggest ideas/improvements/bugs on GitHub:
-http://github.com/username/VoteForms/issues
+http://github.com/me6iaton/VoteForms/issues
