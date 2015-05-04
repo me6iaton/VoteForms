@@ -69,6 +69,7 @@ $default = array(
       'class' => 'VoteFormRecord',
       'on' => "VoteFormField.id = Record.field" .
         " AND Form.id = Record.form" .
+        " AND Record.thread = {$thread->get('id')}" .
         " AND Record.createdby = {$modx->user->id}"
     ),
   ),
