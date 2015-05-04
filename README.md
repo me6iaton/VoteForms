@@ -9,6 +9,10 @@
 - вывод форм и результатов для голосования на сайте, обновление на лету через ajax
 - возможность привязать результаты голосования к ресурсу или любому другому объекту создав новый thread
 
+### [Документация](https://github.com/me6iaton/Docs/blob/master/ru/01_%D0%9A%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B/31_VoteForms.md)
+
+### [Форма для пожертвования](http://yasobe.ru/na/voteforms)
+
 ### Copyright Information
 
 ms2form is distributed as GPL (as MODx Revolution is), but the copyright owner
