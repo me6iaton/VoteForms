@@ -49,6 +49,7 @@ $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
 $_lang['voteforms_form_err_rating_max'] = 'Нельзя изменить максимальный рейтинг после записи результатов голосования';
+$_lang['voteforms_form_err_rating_max_value'] = 'Нельзя записать значение большее чем rating_max';
 
 $_lang['voteforms_users_count'] = 'Голосов:';
 

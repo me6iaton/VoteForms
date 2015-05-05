@@ -48,6 +48,7 @@ $_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
 $_lang['voteforms_form_err_no_auth'] = 'Error no auth';
 $_lang['voteforms_form_err_rating_max'] = 'Disable after add records';
+$_lang['voteforms_form_err_rating_max_value'] = 'You can not write a value greater than rating_max';
 
 $_lang['voteforms_users_count'] = 'Votes:';
 

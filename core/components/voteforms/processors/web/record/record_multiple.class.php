@@ -35,6 +35,13 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
     if(!$this->form->active){
       return $this->modx->lexicon('voteforms_record_err_active');
     }
+    // validation rating_max
+    $ratingMax = $this->form->rating_max;
+    foreach ($this->fields as $key => $field) {
+      if( (int) $field['value'] > (int) $ratingMax){
+        return $this->modx->lexicon('voteforms_form_err_rating_max_value');
+      }
+    }
 
     return parent::initialize();
   }
