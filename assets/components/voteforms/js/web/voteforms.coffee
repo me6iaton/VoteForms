@@ -48,7 +48,8 @@ do($ = window.jQuery, window) ->
       @$elsShowRating = $('.vtf-thread-'+@data.thread)
     # Additional plugin methods go here
     init: () ->
-      if !jQuery().raty
+      if !jQuery().raty and !VoteForm.init
+        VoteForm.init = true
         document.write '<script src="' +
           @options.vendorUrl + 'raty/lib/jquery.raty.js"></script>'
       @_listeners()

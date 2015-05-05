@@ -61,7 +61,8 @@
       }
 
       VoteForm.prototype.init = function() {
-        if (!jQuery().raty) {
+        if (!jQuery().raty && !VoteForm.init) {
+          VoteForm.init = true;
           document.write('<script src="' + this.options.vendorUrl + 'raty/lib/jquery.raty.js"></script>');
         }
         this._listeners();
