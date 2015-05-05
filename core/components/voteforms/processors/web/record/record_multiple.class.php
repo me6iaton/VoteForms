@@ -73,7 +73,7 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
       $record->set('field',$field['id']);
       $record->set('thread', $this->threadId);
       $record->set('createdby', $this->modx->user->id);
-      $record->set('integer', $field['id']);
+      $record->set('integer', $field['value']);
 
       /* run object validation */
       if (!$record->validate()) {
