@@ -85,6 +85,17 @@ if($field){
 
 $pdoFetch->setConfig($default);
 $outputData= $pdoFetch->run();
+// if fist init
+if(!$outputData){
+  $threadObj = $modx->newObject('VoteFormThread');
+  $threadObj->fromArray(array(
+    'resource' => $modx->resource->id,
+    'form' => $form,
+    'name' => $thread,
+  ));
+  $threadObj->save();
+  $outputData = $pdoFetch->run();
+}
 $outputData = $outputData[0];
 
 if($stars){
@@ -101,6 +112,7 @@ if($field){
 }else{
   $outputData['class'] = 'vtf-thread-[[+id]]';
 }
+if (!$outputData['rating']) $outputData['rating'] = 0;
 
 $output = $pdoFetch->getChunk($tpl, $outputData, $pdoFetch->config['fastMode']);
 return $output;
