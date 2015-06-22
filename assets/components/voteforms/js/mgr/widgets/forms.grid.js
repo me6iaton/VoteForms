@@ -136,6 +136,30 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
         return true;
     },
 
+    removeThreads: function (act, btn, e) {
+        var forms = this._getSelectedIds();
+        if (!forms.length) {
+            return false;
+        }
+        MODx.msg.confirm({
+            title: _('voteforms_clean_remove'),
+            text: _('voteforms_clean_confirm'),
+            url: this.config.url,
+            params: {
+                action: 'mgr/thread/remove',
+                forms: Ext.util.JSON.encode(forms),
+            },
+            listeners: {
+                success: {
+                    fn: function (r) {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        });
+        return true;
+    },
+
     disableItem: function (act, btn, e) {
         var ids = this._getSelectedIds();
         if (!ids.length) {
@@ -209,7 +233,7 @@ Ext.extend(VoteForms.grid.Forms, MODx.grid.Grid, {
             dataIndex: 'actions',
             renderer: VoteForms.utils.renderActions,
             sortable: false,
-            width: 130,
+            width: 150,
             id: 'actions'
         }];
     },

@@ -30,6 +30,8 @@ $_lang['voteforms_items_remove'] = 'Удалить элементы';
 $_lang['voteforms_item_remove_confirm'] = 'Вы уверены, что хотите удалить этот элемент?';
 $_lang['voteforms_items_remove_confirm'] = 'Вы уверены, что хотите удалить эти элементы?';
 $_lang['voteforms_item_active'] = 'Включено';
+$_lang['voteforms_clean_confirm'] = 'Вы уверены, что хотите удалить все результы голосования?';
+$_lang['voteforms_clean'] = 'Очистить рейтинг';
 
 $_lang['voteforms_item_err_name'] = 'Вы должны указать имя элемента.';
 $_lang['voteforms_item_err_form'] = 'Вы должны указать id формы.';

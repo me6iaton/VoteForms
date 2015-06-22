@@ -64,6 +64,16 @@ class VoteFormThreadGetListProcessor extends modObjectGetListProcessor {
       'button' => true,
       'menu' => true,
     );
+    // Remove
+    $array['actions'][] = array(
+      'cls' => '',
+      'icon' => 'icon icon-trash-o action-red',
+      'title' => $this->modx->lexicon('voteforms_clean'),
+      'multiple' => $this->modx->lexicon('voteforms_clean'),
+      'action' => 'removeThreads',
+      'button' => true,
+      'menu' => true,
+    );
     return $array;
   }
 

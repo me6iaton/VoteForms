@@ -29,6 +29,8 @@ $_lang['voteforms_item_remove'] = 'Remove Item';
 $_lang['voteforms_items_remove'] = 'Remove Items';
 $_lang['voteforms_item_remove_confirm'] = 'Are you sure you want to remove this Item?';
 $_lang['voteforms_items_remove_confirm'] = 'Are you sure you want to remove this Items?';
+$_lang['voteforms_clean_confirm'] = 'Are you sure you want to clean votes?';
+$_lang['voteforms_clean'] = 'Сlean votes';
 
 $_lang['voteforms_item_err_name'] = 'You must specify the name of Item.';
 $_lang['voteforms_item_err_form'] = 'You must specify the form id.';

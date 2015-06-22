@@ -96,7 +96,16 @@ class VoteFormGetListProcessor extends modObjectGetListProcessor {
         'menu' => true,
       );
     }
-
+    // Remove Threads
+    $array['actions'][] = array(
+      'cls' => '',
+      'icon' => 'icon icon-refresh action-red',
+      'title' => $this->modx->lexicon('voteforms_clean'),
+      'multiple' => $this->modx->lexicon('voteforms_clean'),
+      'action' => 'removeThreads',
+      'button' => true,
+      'menu' => true,
+    );
     // Remove
     $array['actions'][] = array(
       'cls' => '',

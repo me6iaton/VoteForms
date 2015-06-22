@@ -65,6 +65,30 @@ Ext.extend(VoteForms.grid.Threads, MODx.grid.Grid, {
         MODx.loadPage('resource/update&id='+resourceId);
     },
 
+    removeThreads: function (act, btn, e) {
+        var ids = this._getSelectedIds();
+        if (!ids.length) {
+            return false;
+        }
+        MODx.msg.confirm({
+            title: _('voteforms_clean_remove'),
+            text: _('voteforms_clean_confirm'),
+            url: this.config.url,
+            params: {
+                action: 'mgr/thread/remove',
+                ids: Ext.util.JSON.encode(ids),
+            },
+            listeners: {
+                success: {
+                    fn: function (r) {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        });
+        return true;
+    },
+
     getFields: function (config) {
         return ['id', 'resource', 'form', 'name', 'users_count', 'rating', 'actions'];
     },
