@@ -4,7 +4,7 @@
 define('PKG_NAME', 'VoteForms');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 
-define('PKG_VERSION', '1.3.3');
+define('PKG_VERSION', '1.4.0');
 define('PKG_RELEASE', 'beta');
 define('PKG_AUTO_INSTALL', true);
 

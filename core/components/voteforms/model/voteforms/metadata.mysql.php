@@ -9,6 +9,7 @@ $xpdo_meta_map = array (
   ),
   'xPDOObject' => 
   array (
-    0 => 'VoteFormRecord',
+    0 => 'VoteFormRatingField',
+    1 => 'VoteFormRecord',
   ),
 );

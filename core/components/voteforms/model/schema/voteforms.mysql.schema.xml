@@ -11,6 +11,7 @@
         <composite alias="Fields" class="VoteFormField" local="id" foreign="form" cardinality="many" owner="local"/>
         <composite alias="Threads" class="VoteFormThread" local="id" foreign="form" cardinality="many" owner="local"/>
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="form" cardinality="many" owner="local"/>
+        <composite alias="RatingsFields" class="VoteFormRatingField" local="id" foreign="form" cardinality="many" owner="local"/>
     </object>
 
     <object class="VoteFormField" table="voteforms_fields" extends="xPDOSimpleObject">
@@ -21,6 +22,7 @@
         <field key="type" dbtype="varchar" precision="100" phptype="string" null="false" default="integer"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="field" cardinality="many" owner="local"/>
+        <composite alias="RatingsFields" class="VoteFormRatingField" local="id" foreign="field" cardinality="many" owner="local"/>
         <aggregate alias="Form" class="VoteForm" local="form" foreign="id" cardinality="one" owner="foreign"/>
     </object>
 
@@ -32,7 +34,26 @@
         <field key="users_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="thread" cardinality="many" owner="local"/>
+        <composite alias="RatingsFields" class="VoteFormRatingField" local="id" foreign="thread" cardinality="many" owner="local"/>
         <aggregate alias="Form" class="VoteForm" local="form" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="VoteFormRatingField" table="voteforms_ratings_fields" extends="xPDOObject">
+        <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
+        <field key="field" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
+        <field key="thread" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
+        <field key="rating" dbtype="float" phptype="float" attributes="unsigned" null="false" default="0"/>
+        <field key="users_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
+
+        <index alias="unique_key" name="unique_key" primary="true" unique="true" type="BTREE">
+            <column key="form" length="" collation="A" null="false"/>
+            <column key="field" length="" collation="A" null="false"/>
+            <column key="thread" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="Form" class="VoteForm" local="form" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Field" class="VoteFormField" local="field" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Thread" class="VoteFormThread" local="thread" foreign="id" cardinality="one" owner="foreign"/>
     </object>
 
     <object class="VoteFormRecord" table="voteforms_records" extends="xPDOObject">

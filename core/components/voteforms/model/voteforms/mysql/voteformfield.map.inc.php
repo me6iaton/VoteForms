@@ -66,6 +66,14 @@ $xpdo_meta_map['VoteFormField']= array (
       'cardinality' => 'many',
       'owner' => 'local',
     ),
+    'RatingsFields' => 
+    array (
+      'class' => 'VoteFormRatingField',
+      'local' => 'id',
+      'foreign' => 'field',
+      'cardinality' => 'many',
+      'owner' => 'local',
+    ),
   ),
   'aggregates' => 
   array (

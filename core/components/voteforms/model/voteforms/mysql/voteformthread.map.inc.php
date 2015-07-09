@@ -68,6 +68,14 @@ $xpdo_meta_map['VoteFormThread']= array (
       'cardinality' => 'many',
       'owner' => 'local',
     ),
+    'RatingsFields' => 
+    array (
+      'class' => 'VoteFormRatingField',
+      'local' => 'id',
+      'foreign' => 'thread',
+      'cardinality' => 'many',
+      'owner' => 'local',
+    ),
   ),
   'aggregates' => 
   array (
