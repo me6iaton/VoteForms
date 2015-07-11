@@ -63,18 +63,19 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
     $records = $this->form->getMany('Records', $query);
 
     // update records
+    $fieldsStack =  $this->fields;
     /* @var VoteFormRecord $record */
     foreach ($records as $record) {
-      foreach ($this->fields as $key => $field){
+      foreach ($fieldsStack as $key => $field){
         if($record->field == $field['id']){
           $record->set('integer', $field['value']);
           $record->save();
-          unset($this->fields[$key]);
+          unset($fieldsStack[$key]);
         }
       }
     }
     // create new records
-    foreach ($this->fields as $key => $field){
+    foreach ($fieldsStack as $key => $field){
       $record = $this->modx->newObject('VoteFormRecord');
       $record->set('form', $this->formId);
       $record->set('field',$field['id']);
@@ -100,7 +101,7 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
       }
 
     }
-    // update VoteFormThread raiting
+    // update VoteFormThread raiting and users_count
     $this->modx->exec(
       "UPDATE  {$this->modx->getTableName('VoteFormThread')}  AS thread
               CROSS JOIN
@@ -112,6 +113,23 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
       SET     thread.rating = records.rating, thread.users_count = records.total
       WHERE   thread.id = {$this->threadId}
     ");
+    // update VoteFormRatingField raiting and users_count
+    foreach ($this->fields as $key => $field) {
+      $this->modx->exec(
+        "UPDATE  {$this->modx->getTableName('VoteFormRatingField')}  AS ratingField
+                CROSS JOIN
+                (
+                    SELECT  ROUND(AVG(`integer`), 2) AS rating, COUNT(DISTINCT createdby) AS total
+                    FROM    {$this->modx->getTableName('VoteFormRecord')}
+                    WHERE   thread = {$this->threadId}
+                    AND     field = {$field['id']}
+                ) AS records
+        SET     ratingField.rating = records.rating, ratingField.users_count = records.total
+        WHERE   ratingField.form = {$this->formId}
+        AND     ratingField.field = {$field['id']}
+        AND     ratingField.thread = {$this->threadId}
+      ");
+    }
 
     return $this->cleanup();
   }

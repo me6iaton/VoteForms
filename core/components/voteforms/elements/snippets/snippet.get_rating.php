@@ -87,13 +87,7 @@ $pdoFetch->setConfig($default);
 $outputData= $pdoFetch->run();
 // if fist init
 if(!$outputData){
-  $threadObj = $modx->newObject('VoteFormThread');
-  $threadObj->fromArray(array(
-    'resource' => $modx->resource->id,
-    'form' => $form,
-    'name' => $thread,
-  ));
-  $threadObj->save();
+  $VoteForms->prepareJquery($modx->resource->id, $form, $thread);
   $outputData = $pdoFetch->run();
 }
 $outputData = $outputData[0];

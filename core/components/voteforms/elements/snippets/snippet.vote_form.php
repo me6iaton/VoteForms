@@ -43,13 +43,7 @@ $thread = $modx->getObject('VoteFormThread', array(
   'form' => $formId
 ));
 if (!$thread) {
-  $thread = $modx->newObject('VoteFormThread');
-  $thread->fromArray(array(
-    'resource' => $modx->resource->id,
-    'form' => $formId,
-    'name' => $scriptProperties['thread'],
-  ));
-  $thread->save();
+  $thread = $VoteForms->prepareJquery($modx->resource->id, $formId, $scriptProperties['thread']);
 }
 $scriptProperties['thread'] = $thread->get('id');
 

@@ -160,8 +160,36 @@ class VoteForms
   }
 
   /**
-   * This method returns prepared response
+   * actions perfom before first run snippets
    *
+   * @param int $resourceId
+   * @param int $formId
+   * @param string $threadName
+   *
+   * @return VoteFormThread
+   */
+  public function prepareJquery($resourceId, $formId, $threadName){
+    $thread = $this->modx->newObject('VoteFormThread');
+    $thread->fromArray(array(
+      'resource' => $resourceId,
+      'form' => $formId,
+      'name' => $threadName,
+    ));
+    $thread->save();
+    $this->loadPdoTools();
+    $fields = $this->pdoTools->getCollection('VoteFormField', array('form' => $formId));
+    foreach ($fields as $field){
+      $ratingField = $this->modx->newObject('VoteFormRatingField');
+      $ratingField->set('form', $formId);
+      $ratingField->set('field', $field['id']);
+      $ratingField->set('thread', $thread->id);
+      $ratingField->save();
+    }
+    return $thread;
+  }
+
+  /**
+   * This method returns prepared response
    * @param mixed $response
    *
    * @return array|string $response
