@@ -34,6 +34,7 @@ class VoteFormsHomeManagerController extends VoteFormsMainController {
     $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/forms.grid.js');
     $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/forms.windows.js');
     $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/threads.grid.js');
+    $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/ratingsFields.grid.js');
     $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/fields.grid.js');
     $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/fields.windows.js');
     $this->addJavascript($this->VoteForms->config['jsUrl'] . 'mgr/widgets/home.panel.js');

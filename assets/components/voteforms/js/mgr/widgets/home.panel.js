@@ -37,7 +37,78 @@ VoteForms.panel.Home = function (config) {
                     html: _('voteforms_intro_msg'),
                     cls: 'panel-desc',
                 }]
-            }]
+            }],
+            listeners: {
+                added: function (){
+                    var self = this;
+                    Ext.Ajax.request({
+                        url: VoteForms.config.connectorUrl,
+                        params: {
+                            action: 'mgr/field/getlist',
+                        },
+                        success: function (response, opts) {
+                           var fields = Ext.decode(response.responseText).results;
+                           var configs = makeConfigsForms(fields);
+                           getForms(configs);
+                        },
+                        failure: function (response, opts) {
+                            var responseError = Ext.decode(response.responseText);
+                            console.error(responseError)
+                        }
+                    });
+                    var getForms = function (configs) {
+                        Ext.Ajax.request({
+                            url: VoteForms.config.connectorUrl,
+                            params: {
+                                action: 'mgr/form/getlist',
+                                dir: 'ASC'
+                            },
+                            success: function (response, opts) {
+                                var forms = Ext.decode(response.responseText).results;
+                                forms.forEach(function (form) {
+                                    self.add({
+                                        title: form.name,
+                                        layout: 'anchor',
+                                        items: [{
+                                            xtype: 'voteforms-grid-ratingsFields',
+                                            cls: 'main-wrapper',
+                                            form: form.id,
+                                            columns: configs[form.id].columns,
+                                            fields: configs[form.id].fields,
+                                        }],
+                                        listeners: {}
+                                    });
+                                });
+                            },
+                            failure: function (response, opts) {
+                                var responseError = Ext.decode(response.responseText);
+                                console.error(responseError)
+                            }
+                        });
+                    };
+                    var makeConfigsForms = function (fields) {
+                        var configs = [];
+                        fields.forEach(function(field){
+                            if (!configs[field.form]){
+                                configs[field.form] = {};
+                                configs[field.form].columns = [{
+                                    header: 'thread',
+                                    dataIndex: 'thread',
+                                    sortable: true,
+                                }];
+                                configs[field.form].fields = ['thread'];
+                            }
+                            configs[field.form].columns.push({
+                                header: field.name,
+                                dataIndex: 'rating_field_' + field.id,
+                                sortable: true,
+                            });
+                            configs[field.form].fields.push('rating_field_' + field.id)
+                        });
+                        return configs;
+                    }
+                }
+            }
         }]
     });
     VoteForms.panel.Home.superclass.constructor.call(this, config);
