@@ -30,7 +30,7 @@
         <field key="resource" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
-        <field key="rating" dbtype="float"  phptype="float" attributes="unsigned" null="false" default="0"/>
+        <field key="rating" dbtype="float"  phptype="float" null="false" default="0"/>
         <field key="users_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="thread" cardinality="many" owner="local"/>
@@ -43,7 +43,7 @@
         <field key="resource" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
         <field key="field" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
-        <field key="rating" dbtype="float" phptype="float" attributes="unsigned" null="false" default="0"/>
+        <field key="rating" dbtype="float" phptype="float" null="false" default="0"/>
         <field key="users_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
 
         <index alias="unique_key" name="unique_key" primary="true" unique="true" type="BTREE">
@@ -62,7 +62,7 @@
         <field key="field" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
         <field key="thread" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
         <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
-        <field key="integer" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
+        <field key="integer" dbtype="int" precision="10" phptype="integer" null="false" default="0"/>
 
         <index alias="unique_key" name="unique_key" primary="true" unique="true" type="BTREE">
             <column key="form" length="" collation="A" null="false"/>
