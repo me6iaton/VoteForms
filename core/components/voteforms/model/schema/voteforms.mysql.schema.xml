@@ -39,9 +39,10 @@
     </object>
 
     <object class="VoteFormRatingField" table="voteforms_ratings_fields" extends="xPDOObject">
+        <field key="thread" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
+        <field key="resource" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="form" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
         <field key="field" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
-        <field key="thread" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" index="pk"/>
         <field key="rating" dbtype="float" phptype="float" attributes="unsigned" null="false" default="0"/>
         <field key="users_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
 

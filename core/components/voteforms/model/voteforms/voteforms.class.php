@@ -183,6 +183,7 @@ class VoteForms
       $ratingField->set('form', $formId);
       $ratingField->set('field', $field['id']);
       $ratingField->set('thread', $thread->id);
+      $ratingField->set('resource', $resourceId);
       $ratingField->save();
     }
     return $thread;

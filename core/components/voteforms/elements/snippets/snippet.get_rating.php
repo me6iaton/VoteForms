@@ -24,11 +24,10 @@ if (empty($form)) {
   $form = $modx->getOption('form', $scriptProperties);
 }
 $resource = $modx->getOption('resource', $scriptProperties, $modx->resource->id, true);
-$thread = $modx->getOption('thread', $scriptProperties, 'resource-' . $resource, true);
+$thread = $modx->getOption('thread', $scriptProperties, 'resource-' . $resource . '-form-' . $form, true);
 $field = $modx->getOption('field', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $stars = $modx->getOption('stars', $scriptProperties);
-
 if($field){
   $default = array(
     'class' => 'VoteFormThread',

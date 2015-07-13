@@ -20,13 +20,13 @@ if (!$VoteForms->authenticated) {
 $VoteForms->initialize($modx->context->key, $scriptProperties);
 
 // Properties
-if (empty($thread)) {
-  $scriptProperties['thread'] = $modx->getOption('thread', $scriptProperties, 'resource-' . $modx->resource->id, true);
-}
 if(empty($id)){
   return $modx->lexicon('voteforms_form_err_id');
 }else{
   $formId = $modx->getOption('id', $scriptProperties);
+}
+if (empty($thread)) {
+  $scriptProperties['thread'] = $modx->getOption('thread', $scriptProperties, 'resource-' . $modx->resource->id . '-form-'.$formId, true);
 }
 $tplOuter = $modx->getOption('tplOuter', $scriptProperties);
 $tplRow = $modx->getOption('tplRow', $scriptProperties);

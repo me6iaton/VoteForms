@@ -86,8 +86,10 @@ class VoteFormRatingFieldGetListProcessor extends modObjectGetListProcessor
       }else{
         $keysConcat[$item['thread']] = count($listConcat);
         $listConcat[] = array(
+          'resource' => $item['resource'],
           'thread' => $item['thread'],
-          'rating_field_' . $item['field'] => $item['rating']
+          'rating_field_' . $item['field'] => $item['rating'],
+          'actions' => $item['actions']
         );
       }
     }

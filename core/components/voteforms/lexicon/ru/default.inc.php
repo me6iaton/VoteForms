@@ -14,6 +14,7 @@ $_lang['voteforms_item_index'] = 'Порядок';
 $_lang['voteforms_item_type'] = 'Тип';
 $_lang['voteforms_item_form'] = 'Форма';
 $_lang['voteforms_item_resource'] = 'Ресурс';
+$_lang['voteforms_item_thread'] = 'Тред';
 $_lang['voteforms_item_users_count'] = 'Голоса';
 $_lang['voteforms_item_rating'] = 'Рейтинг';
 

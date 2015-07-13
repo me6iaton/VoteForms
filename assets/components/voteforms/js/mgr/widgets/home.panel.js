@@ -92,11 +92,26 @@ VoteForms.panel.Home = function (config) {
                             if (!configs[field.form]){
                                 configs[field.form] = {};
                                 configs[field.form].columns = [{
-                                    header: 'thread',
+                                    header: _('voteforms_item_resource'),
+                                    dataIndex: 'resource',
+                                    sortable: true,
+                                },{
+                                    header: _('voteforms_item_thread'),
                                     dataIndex: 'thread',
                                     sortable: true,
+                                //},{
+                                //    header: _('voteforms_grid_actions'),
+                                //    dataIndex: 'actions',
+                                //    renderer: VoteForms.utils.renderActions,
+                                //    sortable: false,
+                                //    width: 70,
+                                //    id: 'actions'
                                 }];
-                                configs[field.form].fields = ['thread'];
+                                configs[field.form].fields = [
+                                    'resource',
+                                    'thread',
+                                    'actions'
+                                ];
                             }
                             configs[field.form].columns.push({
                                 header: field.name,
