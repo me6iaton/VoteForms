@@ -3,6 +3,9 @@ VoteForms.grid.RatingsFields = function (config) {
     if (!config.id) {
         config.id = 'voteforms-grid-ratingsFields-form' + config.form;
     }
+    if (!config.pageSize) {
+        config.pageSize = 100;
+    }
     Ext.applyIf(config, {
         url: VoteForms.config.connector_url,
         fields: config.fields,

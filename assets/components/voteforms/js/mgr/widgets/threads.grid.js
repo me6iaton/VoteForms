@@ -3,6 +3,9 @@ VoteForms.grid.Threads = function (config) {
     if (!config.id) {
         config.id = 'voteforms-grid-threads';
     }
+    if (!config.pageSize) {
+        config.pageSize = 50;
+    }
     Ext.applyIf(config, {
         url: VoteForms.config.connector_url,
         fields: this.getFields(config),
