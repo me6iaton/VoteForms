@@ -50,7 +50,7 @@ class VoteFormRatingFieldGetListProcessor extends modObjectGetListProcessor
       $sortKey = $this->getProperty('sort');
       if(strstr($sortKey, 'rating_field')){
         $sortKeyArr = explode('_', $sortKey);
-        $sortKey = 'FIELD(field, '. $sortKeyArr[2].'), rating';
+        $sortKey = 'FIELD(VoteFormRatingField.field, '. $sortKeyArr[2].') DESC, rating';
       }
     }
     $c->sortby($sortKey, $this->getProperty('dir'));
