@@ -28,6 +28,10 @@ if(empty($id)){
 if (empty($thread)) {
   $scriptProperties['thread'] = $modx->getOption('thread', $scriptProperties, 'resource-' . $modx->resource->id . '-form-'.$formId, true);
 }
+if($scriptProperties['widget'] == 'upvote'){
+  $scriptProperties['tplRow'] = 'tpl.VoteForms.row.upvote';
+}
+
 $tplOuter = $modx->getOption('tplOuter', $scriptProperties);
 $tplRow = $modx->getOption('tplRow', $scriptProperties);
 $sortby = $modx->getOption('sortby', $scriptProperties, 'index');
@@ -61,16 +65,23 @@ $default = array(
     ),
     'Record' => array(
       'class' => 'VoteFormRecord',
-      'on' => "VoteFormField.id = Record.field" .
-        " AND Form.id = Record.form" .
+      'on' => "Record.field = VoteFormField.id" .
+        " AND Record.form = Form.id" .
         " AND Record.thread = {$thread->get('id')}" .
         " AND Record.createdby = {$modx->user->id}"
+    ),
+    'Rating' => array(
+      'class' => 'VoteFormRatingField',
+      'on' => "Rating.field = VoteFormField.id " .
+        " AND Rating.form = Form.id" .
+        " AND Rating.thread = {$thread->get('id')}"
     ),
   ),
   'select' => array(
     'VoteFormField' => '*',
     'Record' => 'Record.integer as record',
     'Form' => 'Form.rating_max as rating_max',
+    'Rating' => 'Rating.rating as rating',
   ),
   'return' => 'data',
 );
@@ -81,6 +92,13 @@ $ratingMax = null;
 $output = array();
 if (!empty($rows) && is_array($rows)) {
   foreach ($rows as $k => $row) {
+    if ($scriptProperties['widget'] == 'upvote') {
+      if ($row['record'] == 1) {
+        $row['upvoteOn'] = 'upvote-on';
+      }else if ($row['record'] == -1) {
+        $row['downvoteOn'] = 'downvote-on';
+      }
+    }
     $ratingMax = $row['rating_max'];
     $output[] = $pdoFetch->getChunk($tplRow, $row, $pdoFetch->config['fastMode']);
   }

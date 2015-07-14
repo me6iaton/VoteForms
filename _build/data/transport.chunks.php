@@ -11,6 +11,10 @@ $tmp = array(
     'file' => 'row',
     'description' => '',
   ),
+  'tpl.VoteForms.row.upvote' => array(
+    'file' => 'row.upvote',
+    'description' => '',
+  ),
   'tpl.VoteForms.rating' => array(
     'file' => 'rating',
     'description' => '',

@@ -1,0 +1,14 @@
+{
+  "name": "jquery-upvote",
+  "homepage": "https://github.com/janosgyerik/jquery-upvote",
+  "_release": "2a43848920",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2a43848920b877eb740f20320b0d7b3994a7267c"
+  },
+  "_source": "https://github.com/janosgyerik/jquery-upvote.git",
+  "_target": "master",
+  "_originalSource": "https://github.com/janosgyerik/jquery-upvote.git",
+  "_direct": true
+}

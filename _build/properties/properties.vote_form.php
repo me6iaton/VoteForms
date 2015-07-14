@@ -31,6 +31,14 @@ $tmp = array(
     ),
     'value' => 'ASC'
   ),
+  'widget' => array(
+    'type' => 'list',
+    'options' => array(
+      array('text' => 'raty', 'value' => 'raty'),
+      array('text' => 'upvote', 'value' => 'upvote'),
+    ),
+    'value' => 'raty'
+  ),
   'submit' => array(
     'type' => 'combo-boolean',
     'value' => false,
