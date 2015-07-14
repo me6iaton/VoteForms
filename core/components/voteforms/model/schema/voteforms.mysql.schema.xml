@@ -7,6 +7,7 @@
         <field key="description" dbtype="text" phptype="text" null="true" default=""/>
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
         <field key="rating_max" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="5"/>
+        <field key="ranking" dbtype="varchar" precision="50" phptype="string" null="false" default="AVG"/>
 
         <composite alias="Fields" class="VoteFormField" local="id" foreign="form" cardinality="many" owner="local"/>
         <composite alias="Threads" class="VoteFormThread" local="id" foreign="form" cardinality="many" owner="local"/>

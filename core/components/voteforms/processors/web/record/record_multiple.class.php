@@ -5,6 +5,8 @@
  */
 class VoteFormRecordMultipleProcessor extends modObjectProcessor {
   public $languageTopics = array('voteforms');
+  /* @var VoteForms $VoteForms */
+  private $VoteForms;
   /* @var VoteForm $form */
   private $form;
   private $formId;
@@ -18,6 +20,7 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
    */
   public function initialize()
   {
+    $this->VoteForms = $this->modx->getService('voteforms', 'VoteForms', $this->modx->getOption('voteforms_core_path', null, $this->modx->getOption('core_path') . 'components/voteforms/') . 'model/voteforms/');
     $this->formId = (int)$this->getProperty('form');
     $this->threadId = (int)$this->getProperty('thread');
     $this->fields = $this->getProperty('fields');
@@ -42,7 +45,6 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
         return $this->modx->lexicon('voteforms_form_err_rating_max_value');
       }
     }
-
     return parent::initialize();
   }
 
@@ -99,37 +101,10 @@ class VoteFormRecordMultipleProcessor extends modObjectProcessor {
         $this->modx->error->checkValidation($record);
         return $this->failure($this->modx->lexicon($this->objectType . '_err_save'));
       }
+    }
 
-    }
-    // update VoteFormThread raiting and users_count
-    $this->modx->exec(
-      "UPDATE  {$this->modx->getTableName('VoteFormThread')}  AS thread
-              CROSS JOIN
-              (
-                  SELECT  ROUND(AVG(`integer`), 2) AS rating, COUNT(DISTINCT createdby) AS total
-                  FROM    {$this->modx->getTableName('VoteFormRecord')}
-                  WHERE   thread = {$this->threadId}
-              ) AS records
-      SET     thread.rating = records.rating, thread.users_count = records.total
-      WHERE   thread.id = {$this->threadId}
-    ");
-    // update VoteFormRatingField raiting and users_count
-    foreach ($this->fields as $key => $field) {
-      $this->modx->exec(
-        "UPDATE  {$this->modx->getTableName('VoteFormRatingField')}  AS ratingField
-                CROSS JOIN
-                (
-                    SELECT  ROUND(AVG(`integer`), 2) AS rating, COUNT(DISTINCT createdby) AS total
-                    FROM    {$this->modx->getTableName('VoteFormRecord')}
-                    WHERE   thread = {$this->threadId}
-                    AND     field = {$field['id']}
-                ) AS records
-        SET     ratingField.rating = records.rating, ratingField.users_count = records.total
-        WHERE   ratingField.form = {$this->formId}
-        AND     ratingField.field = {$field['id']}
-        AND     ratingField.thread = {$this->threadId}
-      ");
-    }
+    //  set ratings for VoteFormThread and VoteFormRatingField
+    $this->VoteForms->setRatings($this->form, $this->fields, $this->threadId);
 
     return $this->cleanup();
   }

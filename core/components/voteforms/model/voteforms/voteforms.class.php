@@ -99,6 +99,85 @@ class VoteForms
   }
 
   /**
+   * set ratings for VoteFormThread and VoteFormRatingField  by a given algorithm
+   *
+   * @param VoteForm $form
+   * @param array $fields
+   * @param string|int $threadId
+   *
+   */
+  public function setRatings($form, $fields, $threadId){
+    $ranking = $form->get('ranking');
+    if ($ranking == 'AVG'){
+      // update VoteFormThread raiting and users_count
+      /** @noinspection SqlDialectInspection */
+      $this->modx->exec(
+        "UPDATE  {$this->modx->getTableName('VoteFormThread')}  AS thread
+              CROSS JOIN
+              (
+                  SELECT  ROUND(AVG(`integer`), 2) AS rating, COUNT(DISTINCT createdby) AS total
+                  FROM    {$this->modx->getTableName('VoteFormRecord')}
+                  WHERE   thread = {$threadId}
+              ) AS records
+      SET     thread.rating = records.rating, thread.users_count = records.total
+      WHERE   thread.id = {$threadId}
+    ");
+      // update VoteFormRatingField raiting and users_count
+      foreach ($fields as $key => $field) {
+        /** @noinspection SqlDialectInspection */
+        $this->modx->exec(
+          "UPDATE  {$this->modx->getTableName('VoteFormRatingField')}  AS ratingField
+                CROSS JOIN
+                (
+                    SELECT  ROUND(AVG(`integer`), 2) AS rating, COUNT(DISTINCT createdby) AS total
+                    FROM    {$this->modx->getTableName('VoteFormRecord')}
+                    WHERE   thread = {$threadId}
+                    AND     field = {$field['id']}
+                ) AS records
+        SET     ratingField.rating = records.rating, ratingField.users_count = records.total
+        WHERE   ratingField.form = {$form->get('id')}
+        AND     ratingField.field = {$field['id']}
+        AND     ratingField.thread = {$threadId}
+      ");
+      }
+    } else if ($ranking == 'WILSON') {
+
+    } else if ($ranking == 'SUM') {
+      // update VoteFormThread raiting and users_count
+      /** @noinspection SqlDialectInspection */
+      $this->modx->exec(
+        "UPDATE  {$this->modx->getTableName('VoteFormThread')}  AS thread
+              CROSS JOIN
+              (
+                  SELECT  SUM(`integer`) AS rating, COUNT(DISTINCT createdby) AS total
+                  FROM    {$this->modx->getTableName('VoteFormRecord')}
+                  WHERE   thread = {$threadId}
+              ) AS records
+      SET     thread.rating = records.rating, thread.users_count = records.total
+      WHERE   thread.id = {$threadId}
+    ");
+      // update VoteFormRatingField raiting and users_count
+      foreach ($fields as $key => $field) {
+        /** @noinspection SqlDialectInspection */
+        $this->modx->exec(
+          "UPDATE  {$this->modx->getTableName('VoteFormRatingField')}  AS ratingField
+                CROSS JOIN
+                (
+                    SELECT  SUM(`integer`) AS rating, COUNT(DISTINCT createdby) AS total
+                    FROM    {$this->modx->getTableName('VoteFormRecord')}
+                    WHERE   thread = {$threadId}
+                    AND     field = {$field['id']}
+                ) AS records
+        SET     ratingField.rating = records.rating, ratingField.users_count = records.total
+        WHERE   ratingField.form = {$form->get('id')}
+        AND     ratingField.field = {$field['id']}
+        AND     ratingField.thread = {$threadId}
+      ");
+      }
+    }
+  }
+
+  /**
    * Loads an instance of pdoTools
    *
    * @return boolean

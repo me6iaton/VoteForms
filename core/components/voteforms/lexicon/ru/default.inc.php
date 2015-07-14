@@ -48,6 +48,11 @@ $_lang['voteforms_grid_actions'] = 'Действия';
 
 $_lang['voteforms_forms'] = 'Формы';
 $_lang['voteforms_form_rating_max'] = 'Максимальный рейтинг';
+$_lang['voteforms_form_ranking'] = 'Алгоритм расчета среднего рейтинга';
+$_lang['voteforms_form_ranking_avg'] = 'Среднее арифметическое';
+$_lang['voteforms_form_ranking_wilson'] = 'Доверительный интервал Вильсона';
+$_lang['voteforms_form_ranking_sum'] = 'Сумма всех членов';
+
 $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';
