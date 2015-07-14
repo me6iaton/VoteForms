@@ -184,7 +184,10 @@ do($ = window.jQuery, window) ->
         self = @
         @$upvotes.upvote(
           callback: () ->
-            self._sendRecors([{id: @.id, value: @.count}])
+            value = 0
+            value = 1 if @.upvoted
+            value = -1 if @.downvoted
+            self._sendRecors([{id: @.id, value: value}])
         )
     _showDone: (data) =>
 #      console.log data

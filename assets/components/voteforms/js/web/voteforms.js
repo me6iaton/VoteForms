@@ -273,10 +273,18 @@
             self = _this;
             return _this.$upvotes.upvote({
               callback: function() {
+                var value;
+                value = 0;
+                if (this.upvoted) {
+                  value = 1;
+                }
+                if (this.downvoted) {
+                  value = -1;
+                }
                 return self._sendRecors([
                   {
                     id: this.id,
-                    value: this.count
+                    value: value
                   }
                 ]);
               }
