@@ -51,6 +51,7 @@ $_lang['voteforms_form_ranking'] = 'Ranking algorithms';
 $_lang['voteforms_form_ranking_avg'] = 'Arithmetic average';
 $_lang['voteforms_form_ranking_wilson'] = 'Wilson Confidence Interval';
 $_lang['voteforms_form_ranking_sum'] = 'Sum of all';
+$_lang['voteforms_form_properties'] = 'Propertiesв in json';
 $_lang['voteforms_form_submit'] = 'Submit';
 $_lang['voteforms_form_err_id'] = 'You must specify the form id.';
 $_lang['voteforms_form_err_no_auth'] = 'Error no auth';

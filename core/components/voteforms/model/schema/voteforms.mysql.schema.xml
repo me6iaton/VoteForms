@@ -8,6 +8,7 @@
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
         <field key="rating_max" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="5"/>
         <field key="ranking" dbtype="varchar" precision="50" phptype="string" null="false" default="AVG"/>
+        <field key="properties" dbtype="mediumtext" phptype="json" null="true"/>
 
         <composite alias="Fields" class="VoteFormField" local="id" foreign="form" cardinality="many" owner="local"/>
         <composite alias="Threads" class="VoteFormThread" local="id" foreign="form" cardinality="many" owner="local"/>
@@ -21,6 +22,7 @@
         <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="description" dbtype="text" phptype="text" null="true" default=""/>
         <field key="type" dbtype="varchar" precision="100" phptype="string" null="false" default="integer"/>
+        <field key="properties" dbtype="mediumtext" phptype="json" null="true"/>
 
         <composite alias="Records" class="VoteFormRecord" local="id" foreign="field" cardinality="many" owner="local"/>
         <composite alias="RatingsFields" class="VoteFormRatingField" local="id" foreign="field" cardinality="many" owner="local"/>

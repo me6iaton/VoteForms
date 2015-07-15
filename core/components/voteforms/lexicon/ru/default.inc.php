@@ -52,7 +52,7 @@ $_lang['voteforms_form_ranking'] = 'Алгоритм расчета средне
 $_lang['voteforms_form_ranking_avg'] = 'Среднее арифметическое';
 $_lang['voteforms_form_ranking_wilson'] = 'Доверительный интервал Вильсона';
 $_lang['voteforms_form_ranking_sum'] = 'Сумма всех членов';
-
+$_lang['voteforms_form_properties'] = 'Свойства в формате json';
 $_lang['voteforms_form_submit'] = 'Отправить';
 $_lang['voteforms_form_err_id'] = 'Вы должны указать id формы.';
 $_lang['voteforms_form_err_no_auth'] = 'Вы должны авторизоваться, чтобы проголосовать.';

@@ -47,6 +47,13 @@ Ext.extend(VoteForms.window.CreateField, MODx.Window, {
             id: config.id + '-description',
             height: 150,
             anchor: '99%'
+        }, {
+            xtype: 'textarea',
+            fieldLabel: _('voteforms_form_properties'),
+            name: 'properties',
+            id: config.id + '-properties',
+            anchor: '99%',
+            height: 150,
         }];
     },
 
@@ -117,6 +124,13 @@ Ext.extend(VoteForms.window.UpdateField, MODx.Window, {
             fieldLabel: _('voteforms_item_description'),
             name: 'description',
             id: config.id + '-description',
+            anchor: '99%',
+            height: 150,
+        }, {
+            xtype: 'textarea',
+            fieldLabel: _('voteforms_form_properties'),
+            name: 'properties',
+            id: config.id + '-properties',
             anchor: '99%',
             height: 150,
         }];
