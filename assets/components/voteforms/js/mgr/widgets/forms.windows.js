@@ -129,6 +129,11 @@ Ext.extend(VoteForms.window.UpdateItem, MODx.Window, {
             id: config.id + '-properties',
             anchor: '99%',
             height: 150,
+            listeners: {
+                afterrender: function () {
+                    this.setValue(JSON.stringify(this.value, null, '\t'));
+                }
+            }
         }, {
             xtype: 'combo',
             fieldLabel: _('voteforms_form_ranking'),

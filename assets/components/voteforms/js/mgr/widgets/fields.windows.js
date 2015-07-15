@@ -53,7 +53,7 @@ Ext.extend(VoteForms.window.CreateField, MODx.Window, {
             name: 'properties',
             id: config.id + '-properties',
             anchor: '99%',
-            height: 150,
+            height: 150
         }];
     },
 
@@ -133,6 +133,11 @@ Ext.extend(VoteForms.window.UpdateField, MODx.Window, {
             id: config.id + '-properties',
             anchor: '99%',
             height: 150,
+            listeners: {
+                afterrender: function () {
+                    this.setValue(JSON.stringify(this.value, null, '\t'));
+                }
+            }
         }];
     },
 
