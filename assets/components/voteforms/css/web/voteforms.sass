@@ -66,3 +66,29 @@
 
 .star-half-png:before
   content: "\f123"
+
+// ----------- .vtf--upvote ---------------------------------------
+
+.vtf--upvote
+  overflow: hidden
+.vtf__upvote
+  float: left
+  margin-left: 20px
+  .icon, .count
+    display: block
+    text-align: center
+  .icon
+    font-size: 42px
+    margin: 5px 0
+  .count
+    font-size: 26px
+  a
+    width: 50px
+    height: 25px
+    display: block
+    cursor: pointer
+    .svg-triangle
+      width: 100%
+    &.upvote-on, &.downvote-on
+      polygon
+        fill: #FE7A15
