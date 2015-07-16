@@ -27,13 +27,13 @@ if (empty($formId)) {
 $resourceId = $modx->getOption('resource', $scriptProperties, $modx->resource->id, true);
 $threadName = $modx->getOption('threadName', $scriptProperties, 'resource-' . $resourceId . '-form-' . $formId, true);
 $widget = $modx->getOption('widget', $scriptProperties);
-if($widget == 'upvote'){
-  $scriptProperties['tplRow'] = 'tpl.VoteForms.row.upvote';
-}
 $tplOuter = $modx->getOption('tplOuter', $scriptProperties);
 $tplRow = $modx->getOption('tplRow', $scriptProperties);
 $sortby = $modx->getOption('sortby', $scriptProperties, 'index');
 $sortdir = $modx->getOption('sortbir', $scriptProperties, 'ASC');
+if ($widget == 'upvote' and $tplRow == "tpl.VoteForms.row") {
+  $tplRow = 'tpl.VoteForms.row.upvote';
+}
 
 // Prepare Voteforms
 /** @var VoteFormThread $thread */
