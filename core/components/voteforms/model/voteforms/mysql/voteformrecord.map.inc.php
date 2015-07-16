@@ -59,7 +59,6 @@ $xpdo_meta_map['VoteFormRecord']= array (
       'dbtype' => 'int',
       'precision' => '10',
       'phptype' => 'integer',
-      'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
     ),

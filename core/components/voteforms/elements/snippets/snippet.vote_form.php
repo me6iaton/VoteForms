@@ -20,36 +20,31 @@ if (!$VoteForms->authenticated) {
 $VoteForms->initialize($modx->context->key, $scriptProperties);
 
 // Properties
-if(empty($id)){
+$formId = $modx->getOption('id', $scriptProperties);
+if (empty($formId)) {
   return $modx->lexicon('voteforms_form_err_id');
-}else{
-  $formId = $modx->getOption('id', $scriptProperties);
 }
-if (empty($thread)) {
-  $scriptProperties['thread'] = $modx->getOption('thread', $scriptProperties, 'resource-' . $modx->resource->id . '-form-'.$formId, true);
-}
-if($scriptProperties['widget'] == 'upvote'){
+$resourceId = $modx->getOption('resource', $scriptProperties, $modx->resource->id, true);
+$threadName = $modx->getOption('threadName', $scriptProperties, 'resource-' . $resourceId . '-form-' . $formId, true);
+$widget = $modx->getOption('widget', $scriptProperties);
+if($widget == 'upvote'){
   $scriptProperties['tplRow'] = 'tpl.VoteForms.row.upvote';
 }
-
 $tplOuter = $modx->getOption('tplOuter', $scriptProperties);
 $tplRow = $modx->getOption('tplRow', $scriptProperties);
 $sortby = $modx->getOption('sortby', $scriptProperties, 'index');
 $sortdir = $modx->getOption('sortbir', $scriptProperties, 'ASC');
-//$limit = $modx->getOption('limit', $scriptProperties, 5);
-//$outputSeparator = $modx->getOption('outputSeparator', $scriptProperties, "\n");
-//$toPlaceholder = $modx->getOption('toPlaceholder', $scriptProperties, false);
 
-// Prepare Voteforms Thread
-/** @var TicketThread $thread */
+// Prepare Voteforms
+/** @var VoteFormThread $thread */
 $thread = $modx->getObject('VoteFormThread', array(
-  'name' => $scriptProperties['thread'],
+  'name' => $threadName,
   'form' => $formId
 ));
 if (!$thread) {
-  $thread = $VoteForms->prepareJquery($modx->resource->id, $formId, $scriptProperties['thread']);
+  $thread = $VoteForms->newObjects($resourceId, $formId, $threadName);
 }
-$scriptProperties['thread'] = $thread->get('id');
+$threadId = $thread->get('id');
 
 // get fields
 $default = array(
@@ -67,14 +62,14 @@ $default = array(
       'class' => 'VoteFormRecord',
       'on' => "Record.field = VoteFormField.id" .
         " AND Record.form = Form.id" .
-        " AND Record.thread = {$thread->get('id')}" .
+        " AND Record.thread = {$threadId}" .
         " AND Record.createdby = {$modx->user->id}"
     ),
     'Rating' => array(
       'class' => 'VoteFormRatingField',
       'on' => "Rating.field = VoteFormField.id " .
         " AND Rating.form = Form.id" .
-        " AND Rating.thread = {$thread->get('id')}"
+        " AND Rating.thread = {$threadId}"
     ),
   ),
   'select' => array(
@@ -110,8 +105,9 @@ if (empty($outputSeparator)) {
 }
 $output = implode($outputSeparator, $output);
 $outputData = array_merge(array(
-  'output' => $output,
-  'rating_max' => $ratingMax
+  'thread' => $threadId,
+  'rating_max' => $ratingMax,
+  'output' => $output
 ), $scriptProperties);
 $output = $pdoFetch->getChunk($tplOuter, $outputData, $pdoFetch->config['fastMode']);
 // By default just return output

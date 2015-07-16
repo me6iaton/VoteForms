@@ -6,14 +6,34 @@ $xpdo_meta_map['VoteFormRatingField']= array (
   'extends' => 'xPDOObject',
   'fields' => 
   array (
+    'thread' => 0,
+    'resource' => 0,
     'form' => 0,
     'field' => 0,
-    'thread' => 0,
     'rating' => 0,
     'users_count' => 0,
   ),
   'fieldMeta' => 
   array (
+    'thread' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => false,
+      'default' => 0,
+      'index' => 'pk',
+    ),
+    'resource' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => false,
+      'default' => 0,
+    ),
     'form' => 
     array (
       'dbtype' => 'int',
@@ -34,21 +54,10 @@ $xpdo_meta_map['VoteFormRatingField']= array (
       'default' => 0,
       'index' => 'pk',
     ),
-    'thread' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '10',
-      'phptype' => 'integer',
-      'attributes' => 'unsigned',
-      'null' => false,
-      'default' => 0,
-      'index' => 'pk',
-    ),
     'rating' => 
     array (
       'dbtype' => 'float',
       'phptype' => 'float',
-      'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
     ),

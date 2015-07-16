@@ -7,8 +7,12 @@ $tmp = array(
     'type' => 'numberfield',
     'value' => '',
   ),
-  'thread' => array(
+  'threadName' => array(
     'type' => 'textfield',
+    'value' => '',
+  ),
+  'resource' => array(
+    'type' => 'numberfield',
     'value' => '',
   ),
   'tplRow' => array(

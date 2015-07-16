@@ -15,7 +15,7 @@ $tmp = array(
     'type' => 'numberfield',
     'value' => '',
   ),
-  'thread' => array(
+  'threadName' => array(
     'type' => 'textfield',
     'value' => '',
   ),

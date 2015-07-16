@@ -247,7 +247,7 @@ class VoteForms
    *
    * @return VoteFormThread
    */
-  public function prepareJquery($resourceId, $formId, $threadName){
+  public function newObjects($resourceId, $formId, $threadName){
     $thread = $this->modx->newObject('VoteFormThread');
     $thread->fromArray(array(
       'resource' => $resourceId,

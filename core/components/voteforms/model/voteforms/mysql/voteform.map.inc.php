@@ -10,6 +10,8 @@ $xpdo_meta_map['VoteForm']= array (
     'description' => '',
     'active' => 1,
     'rating_max' => 5,
+    'ranking' => 'AVG',
+    'properties' => NULL,
   ),
   'fieldMeta' => 
   array (
@@ -44,6 +46,20 @@ $xpdo_meta_map['VoteForm']= array (
       'phptype' => 'integer',
       'null' => false,
       'default' => 5,
+    ),
+    'ranking' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '50',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => 'AVG',
+    ),
+    'properties' => 
+    array (
+      'dbtype' => 'mediumtext',
+      'phptype' => 'json',
+      'null' => true,
     ),
   ),
   'composites' => 

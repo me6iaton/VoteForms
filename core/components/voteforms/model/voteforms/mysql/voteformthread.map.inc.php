@@ -44,7 +44,6 @@ $xpdo_meta_map['VoteFormThread']= array (
     array (
       'dbtype' => 'float',
       'phptype' => 'float',
-      'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
     ),

@@ -23,8 +23,8 @@ if (empty($form)) {
 } else {
   $form = $modx->getOption('form', $scriptProperties);
 }
-$resource = $modx->getOption('resource', $scriptProperties, $modx->resource->id, true);
-$thread = $modx->getOption('thread', $scriptProperties, 'resource-' . $resource . '-form-' . $form, true);
+$resourceId = $modx->getOption('resource', $scriptProperties, $modx->resource->id, true);
+$thread = $modx->getOption('threadName', $scriptProperties, 'resource-' . $resourceId . '-form-' . $form, true);
 $field = $modx->getOption('field', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $stars = $modx->getOption('stars', $scriptProperties);
@@ -33,7 +33,7 @@ if($field){
     'class' => 'VoteFormThread',
     'where' => array(
       'form' => $form,
-      'resource' => $resource,
+      'resource' => $resourceId,
       'name' => $thread,
     ),
     'leftJoin' => array(
@@ -66,7 +66,7 @@ if($field){
     'class' => 'VoteFormThread',
     'where' => array(
       'form' => $form,
-      'resource' => $resource,
+      'resource' => $resourceId,
       'name' => $thread,
     ),
     'leftJoin' => array(
@@ -86,7 +86,7 @@ $pdoFetch->setConfig($default);
 $outputData= $pdoFetch->run();
 // if fist init
 if(!$outputData){
-  $VoteForms->prepareJquery($modx->resource->id, $form, $thread);
+  $VoteForms->newObjects($modx->resource->id, $form, $thread);
   $outputData = $pdoFetch->run();
 }
 $outputData = $outputData[0];
