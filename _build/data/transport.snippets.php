@@ -11,6 +11,10 @@ $tmp = array(
     'file' => 'get_rating',
     'description' => '',
   ),
+  'countThreadsVoteForm' => array(
+    'file' => 'count_threads',
+    'description' => '',
+  ),
 );
 
 foreach ($tmp as $k => $v) {
